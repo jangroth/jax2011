@@ -1,0 +1,12 @@
+# java
+*.class
+
+# eclipse
+.project
+.metadata/
+.classpath
+.settings/
+
+# project
+target/
+
