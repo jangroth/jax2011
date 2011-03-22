@@ -43,28 +43,12 @@
 			<artifactId>seam-solder</artifactId>
 			<version>3.0.0.CR2</version>
 		</dependency>
-<!--
-		<dependency>
-			<groupId>org.jboss.seam.international</groupId>
-			<artifactId>seam-international</artifactId>
-			<version>3.0.0.CR2</version>
-		</dependency>
- 		<dependency>
-			<groupId>org.jboss.seam.servlet</groupId>
-			<artifactId>seam-servlet</artifactId>
-			<version>3.0.0.CR1</version>
-		</dependency>
- 		<dependency>
-			<groupId>org.jboss.seam.catch</groupId>
-			<artifactId>seam-catch</artifactId>
-			<version>3.0.0.CR1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.seam.config</groupId>
-			<artifactId>seam-config-xml</artifactId>
-			<version>3.0.0.CR1</version>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>org.jboss.seam.international</groupId> <artifactId>seam-international</artifactId> 
+			<version>3.0.0.CR2</version> </dependency> <dependency> <groupId>org.jboss.seam.servlet</groupId> 
+			<artifactId>seam-servlet</artifactId> <version>3.0.0.CR1</version> </dependency> 
+			<dependency> <groupId>org.jboss.seam.catch</groupId> <artifactId>seam-catch</artifactId> 
+			<version>3.0.0.CR1</version> </dependency> <dependency> <groupId>org.jboss.seam.config</groupId> 
+			<artifactId>seam-config-xml</artifactId> <version>3.0.0.CR1</version> </dependency> -->
 		<dependency>
 			<groupId>org.jboss.seam.faces</groupId>
 			<artifactId>seam-faces</artifactId>
@@ -75,6 +59,11 @@
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>3.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>ui-lightness</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<!-- testing dependencies -->
 		<dependency>

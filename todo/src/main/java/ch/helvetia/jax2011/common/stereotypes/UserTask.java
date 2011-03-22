@@ -6,19 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Stereotype;
-import javax.enterprise.util.Nonbinding;
-import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 
 /**
  * UserTask Stereotype
  */
-@RequestScoped
+@ConversationScoped
 @Stereotype
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface UserTask {
-	
+
 }

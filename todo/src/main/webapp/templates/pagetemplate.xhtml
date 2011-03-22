@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<title><h:outputText value="todo-application" /></title>
+</h:head>
+
+<h:body>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="top" height="75" header="Top" resizable="true"
+			closable="true" collapsible="true">
+			<h:outputText value="North unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="bottom" height="75" header="Bottom"
+			resizable="true" closable="true" collapsible="true">
+			<h:outputText value="South unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="left" width="200" header="Left"
+			resizable="true" closable="true" collapsible="true">
+			<h:outputText value="West unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="right" width="200" header="Right"
+			resizable="true" closable="true" collapsible="true">
+			<h:outputText value="East unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<h:form id="contentForm" styleClass="content">
+				<p:growl id="growl" showDetail="true" globalOnly="false"
+					sticky="false" life="5000" />
+				<ui:insert name="content" />
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+</h:body>
+</html>

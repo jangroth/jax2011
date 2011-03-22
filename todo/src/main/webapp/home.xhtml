@@ -1,14 +1,17 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<ui:composition template="/templates/pagetemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.prime.com.tr/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-	<title><h:outputText value="TODO App" />
-	</title>
-</h:head>
-<h:body>
-    Hallo
-    </h:body>
-</html>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+	<ui:param name="title" value="#{labels.wet_verw_page_title}" />
+	<ui:define name="content">
+		<h:panelGrid>
+			<p:commandLink action="createTodo.xhtml?faces-redirect=true" value="create new todo" ajax="false"/>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>

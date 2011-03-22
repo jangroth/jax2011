@@ -6,7 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.enterprise.inject.Stereotype;
-import javax.enterprise.util.Nonbinding;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
@@ -19,8 +18,5 @@ import javax.inject.Named;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Action {
-	
-    @Nonbinding
-    String viewId() default "";
 
 }

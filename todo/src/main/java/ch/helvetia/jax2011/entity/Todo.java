@@ -5,22 +5,40 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * A todo item.
+ */
 @Entity
 public class Todo {
-	
+
 	@GeneratedValue
 	@Id
 	private Long id;
-	
-	private String text;
-	
+
+	@NotEmpty
+	private String name;
+
+	@Temporal(TemporalType.DATE)
+	@NotNull
+	@Future
 	private Date dueDate;
-	
-	private Boolean done;
-	
+
+	private String description;
+
+	private Boolean done = Boolean.FALSE;
+
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Tag> tags = new ArrayList<Tag>();
 
 	public Long getId() {
@@ -31,12 +49,12 @@ public class Todo {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getName() {
+		return name;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Date getDueDate() {
@@ -45,6 +63,14 @@ public class Todo {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Boolean getDone() {
@@ -62,6 +88,5 @@ public class Todo {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
-	
 
 }

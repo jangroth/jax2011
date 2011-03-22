@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
- * 
+ * A tag to categorize todo-items.
  */
 @Entity
 public class Tag {
@@ -14,6 +16,7 @@ public class Tag {
 	@Id
 	private Long id;
 	
+	@NotEmpty
 	private String name;
 
 	private String description;
