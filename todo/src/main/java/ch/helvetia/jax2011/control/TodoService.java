@@ -1,6 +1,7 @@
 package ch.helvetia.jax2011.control;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -17,20 +18,27 @@ public class TodoService {
 
 	@Inject
 	@TodoDb
-	private EntityManager entityManager;
+	private EntityManager em;
 
 	public Todo createNewTodo() {
 		Todo result = new Todo();
-		result.setDueDate(new Date());
+		result.setDueDate(new Date(System.currentTimeMillis() + 1000 * 60 * 60
+				* 24));
 		return result;
 	}
 
 	public void saveTodo(Todo todo) {
-		entityManager.persist(todo);
+		em.persist(todo);
 	}
 
 	public void updateTodo(Todo todo) {
-		entityManager.merge(todo);
+		em.merge(todo);
+	}
+
+	public List<Todo> findAllTodos() {
+		List<Todo> todos = em.createNamedQuery("findAllTodos", Todo.class)
+				.getResultList();
+		return todos;
 	}
 
 }

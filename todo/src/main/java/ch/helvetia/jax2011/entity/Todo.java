@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
@@ -20,6 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * A todo item.
  */
 @Entity
+@NamedQueries(value = { @NamedQuery(name = "findAllTodos", query = "select t from Todo t") })
 public class Todo {
 
 	@GeneratedValue
