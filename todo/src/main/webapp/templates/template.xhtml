@@ -5,59 +5,53 @@
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>TodoApp - JAX 2011</title>
-<h:outputStylesheet name="main.css" library="css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<h:outputStylesheet name="main.css" library="css" />
+	<title>TodoApp - JAX 2011</title>
 </h:head>
 
 <h:body>
 
-   <!-- Begin Wrapper -->
-   <div id="wrapper">
-   
-         <!-- Begin Header -->
-         <div id="header">
-			<h:graphicImage library="images" style="float:left" name="header_left.png" />
-			<h:graphicImage library="images" style="float:right"   name="header_right.png" />
-		 </div>
-		 <!-- End Header -->
-		 
-		 <!-- Begin Navigation -->
-         <div id="navigation">
-		 
-		       <ui:insert name="navigation"  />		 
-			   
-		 </div>
-		 <!-- End Navigation -->
-		 
-		 <!-- Begin Left Column -->
-		 <div id="leftcolumn">
-		 
-		       Left Column
-		 
-		 </div>
-		 <!-- End Left Column -->
-		 
-		 <!-- Begin Right Column -->
-		 <div id="rightcolumn">
+	<!-- Begin Wrapper -->
+	<div id="wrapper">
+
+		<!-- Begin Header -->
+		<div id="header">
+			<a href="home.xhtml">
+				<h:graphicImage library="images" style="float:left"
+					name="header_left.png" />
+			</a>
+			<h:graphicImage library="images" style="float:right"
+				name="header_right.png" />
+		</div>
+		<!-- End Header -->
+
+		<!-- Begin Navigation -->
+		<div id="navigation">
+			<ui:include src="/templates/navigation.xhtml" />
+		</div>
+		<!-- End Navigation -->
+
+		<!-- Begin Left Column -->
+		<div id="leftcolumn">Left Column</div>
+		<!-- End Left Column -->
+
+		<!-- Begin Right Column -->
+		<div id="rightcolumn">
 			<h:form id="contentForm" styleClass="content">
 				<p:growl id="growl" showDetail="true" globalOnly="false"
 					sticky="false" life="5000" />
 				<ui:insert name="content" />
 			</h:form>
-		 </div>
-		 <!-- End Right Column -->
-		 
-		 <!-- Begin Footer -->
-		 <div id="footer">
-		       
-			   This is the Footer		
-			    
-	     </div>
-		 <!-- End Footer -->
-		 
-   </div>
-   <!-- End Wrapper -->
-   
+		</div>
+		<!-- End Right Column -->
+
+		<!-- Begin Footer -->
+		<div id="footer">This is the Footer</div>
+		<!-- End Footer -->
+
+	</div>
+	<!-- End Wrapper -->
+
 </h:body>
 </html>
