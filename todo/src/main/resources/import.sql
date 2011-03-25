@@ -1,0 +1,2 @@
+insert into TODO ("ID", "NAME", "DESCRIPTION", "DUEDATE") values(10000, 'prepare application', 'many more usecases are needed', DATE '2012-12-31');
+insert into TODO ("ID", "NAME", "DESCRIPTION", "DUEDATE") values(10001, 'document code', 'this is alway important', DATE '2011-12-31'); 
