@@ -5,6 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.inject.Stereotype;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
@@ -12,7 +13,7 @@ import javax.inject.Named;
 /**
  * Action Stereotype
  */
-@ViewScoped
+@ConversationScoped
 @Named
 @Stereotype
 @Retention(RetentionPolicy.RUNTIME)
