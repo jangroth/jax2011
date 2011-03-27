@@ -1,42 +1,35 @@
 package ch.helvetia.jax2011.db;
 
 import java.io.Serializable;
+import java.lang.reflect.Proxy;
 
-import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-import javax.persistence.TransactionRequiredException;
 
 /**
  * Producer for EntityManager
  */
-@ConversationScoped
+@ApplicationScoped
+// TODO: use Seam 3 persistence
 public class DbProducer implements Serializable {
 
 	@PersistenceUnit(unitName = "todoApp")
 	private EntityManagerFactory emf;
 
-	private EntityManager em;
-
-	@PostConstruct
-	public void init() {
-		em = emf.createEntityManager();
-	}
-
 	@Produces
 	@TodoDb
-	@RequestScoped
-	// TODO: use @unwraps
+	@ConversationScoped
 	public EntityManager getEntityManager() {
-		try {
-			em.joinTransaction();
-		} catch (TransactionRequiredException e) {
-			// do nothing.
-		}
+		EntityManager em = emf.createEntityManager();
+
+		ManagedPersistenceContextProxyHandler handler = new ManagedPersistenceContextProxyHandler(em);
+		em = (EntityManager) Proxy.newProxyInstance(EntityManager.class.getClassLoader(),
+				new Class[] { EntityManager.class }, handler);
+
 		return em;
 	}
 
