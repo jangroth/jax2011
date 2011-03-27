@@ -11,7 +11,7 @@ import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.Todo;
 
 /**
- * Action to create a new todo-item
+ * Action to create a new todo-item.
  */
 @Action
 public class ListTodosAction implements Serializable {

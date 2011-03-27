@@ -14,17 +14,30 @@
 	</f:metadata>
 	<ui:param name="title" value="#{labels.wet_verw_page_title}" />
 	<ui:define name="content">
-		<p:dataTable value="#{listTodosAction.todos}" var="todo" emptyMessage="no todos found" >
+		<p:dataTable value="#{listTodosAction.todos}" var="todo"
+			emptyMessage="no todos found">
 			<p:column>
+				<f:facet name="header">  
+                    due date  
+            	</f:facet>
 				<h:outputText value="#{todo.dueDate}" />
 			</p:column>
 			<p:column>
-				<h:outputText value="#{todo.done}" />
+				<f:facet name="header">  
+                    status
+            	</f:facet>
+				<p:selectBooleanCheckbox value="#{todo.done}" />
 			</p:column>
-			<p:column>
+			<p:column style="font-weight: bold;">
+				<f:facet name="header">  
+                    name  
+            	</f:facet>
 				<h:outputText value="#{todo.name}" />
 			</p:column>
 			<p:column>
+				<f:facet name="header">  
+                    description  
+            	</f:facet>
 				<h:outputText value="#{todo.description}" />
 			</p:column>
 		</p:dataTable>
