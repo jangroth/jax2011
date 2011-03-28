@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.inject.Stereotype;
-import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
 /**
