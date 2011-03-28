@@ -9,51 +9,46 @@
 	<h:outputStylesheet name="main.css" library="css" />
 	<title>TodoApp - JAX 2011</title>
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </h:head>
 
 <h:body>
 
-	<!-- Begin Wrapper -->
 	<div id="wrapper">
 
-		<!-- Begin Header -->
 		<div id="header">
-			<a href="home.xhtml">
-				<h:graphicImage library="images" style="float:left"
-					name="header_left.png" />
-			</a>
+			<a href="home.xhtml"> <h:graphicImage library="images"
+					style="float:left" name="header_left.png" /> </a>
 			<h:graphicImage library="images" style="float:right"
 				name="header_right.png" />
 		</div>
-		<!-- End Header -->
 
-		<!-- Begin Navigation -->
 		<div id="navigation">
 			<ui:include src="/templates/navigation.xhtml" />
 		</div>
-		<!-- End Navigation -->
 
-		<!-- Begin Left Column -->
-		<div id="leftcolumn">Left Column</div>
-		<!-- End Left Column -->
+		<div id="leftcolumn">
+			<h:form>
+			<p:schedule showHeader="true"> </p:schedule>		
+			</h:form>
+		</div>
 
-		<!-- Begin Right Column -->
 		<div id="rightcolumn">
 			<h:form id="contentForm" styleClass="content">
+				<p:breadCrumb>
+					<p:menuitem value="#{title}" />
+					<p:menuitem value="#{title}" />
+				</p:breadCrumb>
+				<br />
 				<p:growl id="growl" showDetail="true" globalOnly="false"
 					sticky="false" life="5000" />
 				<ui:insert name="content" />
 			</h:form>
 		</div>
-		<!-- End Right Column -->
 
-		<!-- Begin Footer -->
 		<div id="footer">This is the Footer</div>
-		<!-- End Footer -->
 
 	</div>
-	<!-- End Wrapper -->
 
 </h:body>
 </html>
