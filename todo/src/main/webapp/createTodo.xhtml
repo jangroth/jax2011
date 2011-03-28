@@ -12,22 +12,23 @@
 		<f:event type="javax.faces.event.PreRenderViewEvent"
 			listener="#{createTodoAction.init}" />
 	</f:metadata>
-	<ui:param name="title" value="Todo anlegen" />
+	<ui:param name="title" value="create todo" />
 	<ui:define name="content">
 		<h:panelGrid columns="3">
-			<h:outputLabel value="Name:" for="name" />
+			<h:outputLabel value="name:" for="name" />
 			<p:inputText id="name" value="#{createTodoAction.todo.name}" />
 			<p:message for="name" />
 
-			<h:outputLabel value="Due date: " for="dueDate" />
+			<h:outputLabel value="due date: " for="dueDate" />
 			<p:calendar id="dueDate" value="#{createTodoAction.todo.dueDate}" />
 			<p:message for="dueDate" />
 
-			<h:outputLabel value="Description: " for="description" />
+			<h:outputLabel value="description: " for="description" />
 			<p:inputTextarea id="description"
 				value="#{createTodoAction.todo.description}" />
 			<p:message for="description" />
 		</h:panelGrid>
-		<p:commandButton value="Save" action="#{createTodoAction.save}" ajax="false"/>
+		<br />
+		<p:commandButton value="continue to tags" action="#{createTodoAction.save}" ajax="false"/>
 	</ui:define>
 </ui:composition>

@@ -1,6 +1,7 @@
 package ch.helvetia.jax2011.web;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -8,13 +9,14 @@ import javax.inject.Inject;
 
 import ch.helvetia.jax2011.boundary.CreateTodoTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
+import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
 
 /**
- * Action to create a new todo-item
+ * Action to attach tags to a newly created todo-item
  */
 @Action
-public class CreateTodoAction implements Serializable {
+public class AttachTagsAction implements Serializable {
 
 	@Inject
 	private CreateTodoTask task;
@@ -22,7 +24,7 @@ public class CreateTodoAction implements Serializable {
 	// TODO: introduce seam3 view-action
 	public void init() {
 		if (!FacesContext.getCurrentInstance().isPostback()) {
-			task.createTodo();
+			task.findAllTags();
 		}
 	}
 
@@ -30,13 +32,18 @@ public class CreateTodoAction implements Serializable {
 		task.saveTodo();
 		FacesContext.getCurrentInstance().addMessage(
 				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Todo created",
-						"Todo sucessfully created."));
-		return "/attachTags.xhtml?faces-redirect=true";
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Tags attached",
+						"Tags successfully attached."));
+		task.finish();
+		return "/home.xhtml?faces-redirect=true";
 	}
 
 	public Todo getTodo() {
 		return task.getTodo();
+	}
+
+	public List<Tag> getTags() {
+		return task.getTags();
 	}
 
 }

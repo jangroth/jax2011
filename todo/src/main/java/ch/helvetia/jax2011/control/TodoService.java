@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
+import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
 
 /**
@@ -38,6 +40,14 @@ public class TodoService {
 	public List<Todo> findAllTodos() {
 		List<Todo> todos = em.createNamedQuery("findAllTodos", Todo.class)
 				.getResultList();
+		return todos;
+	}
+
+	public List<Todo> findAllTodosByTag(Tag tag) {
+		TypedQuery<Todo> query = em.createNamedQuery("findAllTodosByTag",
+				Todo.class);
+		query.setParameter("tag", tag.getId());
+		List<Todo> todos = query.getResultList();
 		return todos;
 	}
 

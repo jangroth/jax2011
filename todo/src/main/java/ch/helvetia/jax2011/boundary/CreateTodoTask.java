@@ -1,6 +1,7 @@
 package ch.helvetia.jax2011.boundary;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -9,7 +10,9 @@ import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
+import ch.helvetia.jax2011.control.TagService;
 import ch.helvetia.jax2011.control.TodoService;
+import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
 
 /**
@@ -26,21 +29,37 @@ public class CreateTodoTask implements Serializable {
 	@Inject
 	private TodoService todoService;
 
+	@Inject
+	private TagService tagService;
+
 	private Todo todo;
+
+	private List<Tag> tags;
 
 	public void createTodo() {
 		todo = todoService.createNewTodo();
 		conversation.begin();
 	}
 
+	public void findAllTags() {
+		tags = tagService.findAllTags();
+	}
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveTodo() {
 		todoService.saveTodo(todo);
+	}
+
+	public void finish() {
 		conversation.end();
 	}
 
 	public Todo getTodo() {
 		return todo;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
 	}
 
 }

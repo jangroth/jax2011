@@ -3,6 +3,8 @@ package ch.helvetia.jax2011.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -10,12 +12,13 @@ import org.hibernate.validator.constraints.NotEmpty;
  * A tag to categorize todo-items.
  */
 @Entity
+@NamedQueries(value = { @NamedQuery(name = "findAllTags", query = "SELECT t FROM Tag t") })
 public class Tag {
-	
+
 	@GeneratedValue
 	@Id
 	private Long id;
-	
+
 	@NotEmpty
 	private String name;
 
@@ -44,5 +47,5 @@ public class Tag {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }
