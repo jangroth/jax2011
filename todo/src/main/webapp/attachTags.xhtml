@@ -15,29 +15,19 @@
 	<ui:param name="title" value="attach tags" />
 	<ui:define name="content">
 		<p:dataTable value="#{attachTagsAction.tags}" var="tag"
-			emptyMessage="no tags defined yet">
-			<p:column>
-				<f:facet name="header">  
-                    select  
-            	</f:facet>
-				<h:selectManyCheckbox value="" />
-			</p:column>
-			<p:column>
-				<f:facet name="header">  
-                    name  
-            	</f:facet>
+			emptyMessage="no tags defined yet"
+			selection="#{attachTagsAction.selectedTags}">
+			<p:column selectionMode="multiple" />
+			<p:column headerText="name">
 				<h:outputText value="#{tag.name}" />
 			</p:column>
-			<p:column>
-				<f:facet name="header">  
-                    description
-            	</f:facet>
+			<p:column headerText="description">
 				<h:outputText value="#{tag.description}" />
 			</p:column>
 		</p:dataTable>
 		<br />
 		<h:outputText value="Choose tags to be attached with '#{attachTagsAction.todo.name}'" />
 		<br />
-		<p:commandButton value="attach tags" action="#{attachTagsAction.save}" />
+		<p:commandButton value="attach tags" action="#{attachTagsAction.save}" ajax="false"/>
 	</ui:define>
 </ui:composition>

@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @NamedQueries(value = { @NamedQuery(name = "findAllTags", query = "SELECT t FROM Tag t") })
-public class Tag {
+public class Tag implements Comparable<Tag> {
 
 	@GeneratedValue
 	@Id
@@ -46,6 +46,11 @@ public class Tag {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	public int compareTo(Tag o) {
+		return name.compareToIgnoreCase(o.name);
 	}
 
 }

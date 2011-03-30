@@ -3,6 +3,8 @@ package ch.helvetia.jax2011.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,7 +46,7 @@ public class Todo {
 	private Boolean done = Boolean.FALSE;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Tag> tags = new ArrayList<Tag>();
+	private Set<Tag> tags = new TreeSet<Tag>();
 
 	public Long getId() {
 		return id;
@@ -86,12 +88,19 @@ public class Todo {
 		this.done = done;
 	}
 
-	public List<Tag> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
+	}
+
+	/**
+	 * Workaround for primefaces bug in p:datalist
+	 */
+	public List<Tag> getTagsAsList() {
+		return new ArrayList<Tag>(tags);
 	}
 
 }
