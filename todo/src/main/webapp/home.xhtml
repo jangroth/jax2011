@@ -20,7 +20,9 @@
 				<f:facet name="header">  
                     due date  
             	</f:facet>
-				<h:outputText value="#{todo.dueDate}" />
+				<h:outputText value="#{todo.dueDate}">
+					<f:convertDateTime pattern="MM/dd/yyyy" /> 
+				</h:outputText>
 			</p:column>
 			<p:column>
 				<f:facet name="header">  
