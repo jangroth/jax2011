@@ -2,7 +2,7 @@
 <datasources>
 	<local-tx-datasource>
 		<jndi-name>todoAppDatasource</jndi-name>
-		<connection-url>jdbc:h2:~/todoApp.db</connection-url>
+		<connection-url>jdbc:h2:~/todoApp.db;DB_CLOSE_ON_EXIT=FALSE</connection-url>
 		<driver-class>org.h2.Driver</driver-class>
 		<user-name>sa</user-name>
 		<password></password>
