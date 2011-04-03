@@ -59,16 +59,9 @@ public class CreateTodoTask implements Serializable {
 		todo.getTags().addAll(Arrays.asList(selectedTags));
 	}
 
-<<<<<<< HEAD
-	public void addTags(Tag[] selectedTags) {
-		todo.getTags().addAll(Arrays.asList(selectedTags));
-	}
-
-=======
 	/**
 	 * calls service method in transactional context
 	 */
->>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveTodo() {
 		todoService.saveTodo(todo);
