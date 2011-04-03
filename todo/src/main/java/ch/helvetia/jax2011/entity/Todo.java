@@ -97,11 +97,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Workaround for primefaces bug in p:datalist
-=======
 	 * JSF doesnt like sets...
->>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 	 */
 	public List<Tag> getTagsAsList() {
 		return new ArrayList<Tag>(tags);

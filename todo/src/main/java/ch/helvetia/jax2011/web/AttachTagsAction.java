@@ -31,11 +31,7 @@ public class AttachTagsAction implements Serializable {
 		}
 	}
 
-<<<<<<< HEAD
-	public String save() {
-=======
 	public String attachTags() {
->>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 		task.addTags(selectedTags);
 		task.saveTodo();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
