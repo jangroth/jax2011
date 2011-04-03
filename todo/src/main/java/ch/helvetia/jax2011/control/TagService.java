@@ -34,10 +34,16 @@ public class TagService {
 		em.merge(tag);
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * return all tags in the database
+	 */
+>>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 	public Set<Tag> findAllTags() {
 		List<Tag> tags = em.createNamedQuery("findAllTags", Tag.class)
 				.getResultList();
 		return new TreeSet<Tag>(tags);
 	}
-
+	
 }

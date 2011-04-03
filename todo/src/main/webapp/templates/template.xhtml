@@ -27,25 +27,24 @@
 			<ui:include src="/templates/navigation.xhtml" />
 		</div>
 
-		<div id="leftcolumn">
-			<h:form>
-			<p:schedule showHeader="true"> </p:schedule>		
-			</h:form>
-		</div>
+		<h:form id="contentForm" styleClass="content">
+			<div id="leftcolumn">
+				<p:calendar value="#{listTodosAction.callDate}" navigator="false"
+					mode="inline" selectListener="#{listTodosAction.dateChanged}" />
+			</div>
 
-		<div id="rightcolumn">
-			<h:form id="contentForm" styleClass="content">
+			<div id="rightcolumn">
 				<p:breadCrumb>
-					<p:menuitem value="home" url="home.xhtml"/>
-					<p:menuitem value="#{title}" url="#"/>
+					<p:menuitem value="home" url="home.xhtml" />
+					<p:menuitem value="#{title}" url="#" />
 				</p:breadCrumb>
 				<br />
-				<p:growl id="growl" showDetail="true" globalOnly="false"
+				<p:growl id="growl" showDetail="true" globalOnly="true"
 					sticky="false" life="5000" />
 				<ui:insert name="content" />
-			</h:form>
-		</div>
+			</div>
 
+		</h:form>
 		<div id="footer">This is the Footer</div>
 
 	</div>

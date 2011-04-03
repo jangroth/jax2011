@@ -44,8 +44,8 @@ body {
  background: #E7DBD5;
  margin: 0px 5px 5px 0px;
  padding: 10px;
- height: 350px;
- width: 195px;
+ height: 450px;
+ width: 250px;
  float: left;
 }
 #rightcolumn { 
@@ -55,8 +55,8 @@ body {
  background: #F2F2E6;
  margin: 0px 0px 5px 0px;
  padding: 10px;
- height: 350px;
- width: 678px;
+ height: 450px;
+ width: 623px;
  display: inline;
 }
 #footer { 

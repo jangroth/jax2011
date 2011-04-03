@@ -31,15 +31,33 @@ public class AttachTagsAction implements Serializable {
 		}
 	}
 
+<<<<<<< HEAD
 	public String save() {
+=======
+	public String attachTags() {
+>>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 		task.addTags(selectedTags);
 		task.saveTodo();
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Tags attached",
-						"Tags successfully attached."));
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		facesContext.addMessage(null, new FacesMessage(
+				FacesMessage.SEVERITY_INFO, "Tags attached", getMessage()));
+		facesContext.getExternalContext().getFlash().setKeepMessages(true);
+		// TODO: investigate if this can be handled in a seam 3 way
 		task.finish();
 		return "/home.xhtml?faces-redirect=true";
+	}
+
+	private String getMessage() {
+		String result;
+		if (selectedTags.length == 0) {
+			result = "No tags were attached.";
+		} else {
+			result = "Attached tags:";
+			for (Tag tag : selectedTags) {
+				result += " " + tag.getName();
+			}
+		}
+		return result;
 	}
 
 	public Todo getTodo() {

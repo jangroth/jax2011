@@ -25,9 +25,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "findAllTodos", query = "SELECT t FROM Todo t ORDER BY t.dueDate ASC"),
+		@NamedQuery(name = "findAllTodos", query = "SELECT t FROM Todo t WHERE t.dueDate > :callDate ORDER BY t.dueDate ASC"),
 		@NamedQuery(name = "findAllTodosByTag", query = "SELECT todo FROM Todo todo JOIN todo.tags tag WHERE tag.id = :tag ORDER BY todo.dueDate ASC") })
-public class Todo {
+		public class Todo {
 
 	@GeneratedValue
 	@Id
@@ -97,7 +97,11 @@ public class Todo {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Workaround for primefaces bug in p:datalist
+=======
+	 * JSF doesnt like sets...
+>>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 	 */
 	public List<Tag> getTagsAsList() {
 		return new ArrayList<Tag>(tags);

@@ -37,19 +37,38 @@ public class CreateTodoTask implements Serializable {
 
 	private Set<Tag> tags;
 
+	/**
+	 * initialize class-attribute with new todo from service 
+	 */
 	public void createTodo() {
 		todo = todoService.createNewTodo();
 		conversation.begin();
 	}
 
+	/**
+	 * retrieve all tags from service
+	 */
 	public void findAllTags() {
 		tags = tagService.findAllTags();
 	}
-
+	
+	/**
+	 * adds array of selected tags to todo
+	 */
 	public void addTags(Tag[] selectedTags) {
 		todo.getTags().addAll(Arrays.asList(selectedTags));
 	}
 
+<<<<<<< HEAD
+	public void addTags(Tag[] selectedTags) {
+		todo.getTags().addAll(Arrays.asList(selectedTags));
+	}
+
+=======
+	/**
+	 * calls service method in transactional context
+	 */
+>>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveTodo() {
 		todoService.saveTodo(todo);
@@ -59,6 +78,10 @@ public class CreateTodoTask implements Serializable {
 		conversation.end();
 	}
 
+	//
+	// getter & setter
+	//
+	
 	public Todo getTodo() {
 		return todo;
 	}
@@ -66,5 +89,5 @@ public class CreateTodoTask implements Serializable {
 	public Set<Tag> getTags() {
 		return tags;
 	}
-
+	
 }

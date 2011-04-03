@@ -17,7 +17,13 @@
 		<p:dataTable value="#{listTodosAction.todos}" var="todo"
 			emptyMessage="hooray, you got nothing to do!">
 			<p:column headerText="due date">
+<<<<<<< HEAD
 				<h:outputText value="#{todo.dueDate}" />
+=======
+				<h:outputText value="#{todo.dueDate}">
+					<f:convertDateTime pattern="MM/dd/yyyy" /> 
+				</h:outputText>
+>>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 			</p:column>
 			<p:column headerText="status">
 				<p:selectBooleanCheckbox value="#{todo.done}" />

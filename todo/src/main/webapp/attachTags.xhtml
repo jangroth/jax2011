@@ -26,8 +26,14 @@
 			</p:column>
 		</p:dataTable>
 		<br />
-		<h:outputText value="Choose tags to be attached with '#{attachTagsAction.todo.name}'" />
+		<h:outputText
+			value="Choose tags to be attached with '#{attachTagsAction.todo.name}'" />
 		<br />
+<<<<<<< HEAD
 		<p:commandButton value="attach tags" action="#{attachTagsAction.save}" ajax="false"/>
+=======
+		<p:commandButton value="attach tags"
+			action="#{attachTagsAction.attachTags}" ajax="false" />
+>>>>>>> d0e2c6e3ccabda6cf214924156fa00334218c08f
 	</ui:define>
 </ui:composition>
