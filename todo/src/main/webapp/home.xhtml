@@ -16,36 +16,21 @@
 	<ui:define name="content">
 		<p:dataTable value="#{listTodosAction.todos}" var="todo"
 			emptyMessage="hooray, you got nothing to do!">
-			<p:column>
-				<f:facet name="header">  
-                    due date  
-            	</f:facet>
+			<p:column headerText="due date">
 				<h:outputText value="#{todo.dueDate}">
 					<f:convertDateTime pattern="MM/dd/yyyy" /> 
 				</h:outputText>
 			</p:column>
-			<p:column>
-				<f:facet name="header">  
-                    status
-            	</f:facet>
+			<p:column headerText="status">
 				<p:selectBooleanCheckbox value="#{todo.done}" />
 			</p:column>
-			<p:column style="font-weight: bold;">
-				<f:facet name="header">  
-                    name  
-            	</f:facet>
+			<p:column headerText="name" style="font-weight: bold;">
 				<h:outputText value="#{todo.name}" />
 			</p:column>
-			<p:column>
-				<f:facet name="header">  
-                    description  
-            	</f:facet>
+			<p:column headerText="description">
 				<h:outputText value="#{todo.description}" />
 			</p:column>
-			<p:column>
-				<f:facet name="header">  
-                    tags  
-            	</f:facet>
+			<p:column headerText="tags">
 				<p:dataList value="#{todo.tags}" var="tag"
 					rendered="#{! empty todo.tags}" itemType="none" >
 					<h:outputText value="#{tag.name}" />
