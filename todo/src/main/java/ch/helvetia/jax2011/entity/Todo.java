@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * A todo item.
+ * A todo item. 
  */
 @Entity
 @NamedQueries(value = {

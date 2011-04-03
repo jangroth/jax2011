@@ -31,7 +31,7 @@
 				<h:outputText value="#{todo.description}" />
 			</p:column>
 			<p:column headerText="tags">
-				<p:dataList value="#{todo.tags}" var="tag"
+				<p:dataList value="#{todo.tagsAsList}" var="tag"
 					rendered="#{! empty todo.tags}" itemType="none" >
 					<h:outputText value="#{tag.name}" />
 				</p:dataList>

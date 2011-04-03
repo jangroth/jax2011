@@ -37,12 +37,18 @@ public class TodoService {
 		em.merge(todo);
 	}
 
+	/**
+	 * returns all todos from database.
+	 */
 	public List<Todo> findAllTodos() {
 		List<Todo> todos = em.createNamedQuery("findAllTodos", Todo.class)
 				.getResultList();
 		return todos;
 	}
 
+	/**
+	 * returns all todos with a specific tag
+	 */
 	public List<Todo> findAllTodosByTag(Tag tag) {
 		TypedQuery<Todo> query = em.createNamedQuery("findAllTodosByTag",
 				Todo.class);

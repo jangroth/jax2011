@@ -1,6 +1,8 @@
 package ch.helvetia.jax2011.control;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -32,10 +34,13 @@ public class TagService {
 		em.merge(tag);
 	}
 
-	public List<Tag> findAllTags() {
+	/**
+	 * return all tags in the database
+	 */
+	public Set<Tag> findAllTags() {
 		List<Tag> tags = em.createNamedQuery("findAllTags", Tag.class)
 				.getResultList();
-		return tags;
+		return new TreeSet<Tag>(tags);
 	}
-
+	
 }

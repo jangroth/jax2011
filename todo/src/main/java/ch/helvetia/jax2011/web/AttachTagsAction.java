@@ -1,6 +1,7 @@
 package ch.helvetia.jax2011.web;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -20,6 +21,8 @@ public class AttachTagsAction implements Serializable {
 
 	@Inject
 	private CreateTodoTask task;
+	
+	private Tag[] selectedTags;
 
 	// TODO: introduce seam3 view-action
 	public void init() {
@@ -28,12 +31,16 @@ public class AttachTagsAction implements Serializable {
 		}
 	}
 
-	public String save() {
+	public String attachTags() {
+		task.addTags(selectedTags);
 		task.saveTodo();
-		FacesContext.getCurrentInstance().addMessage(
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		facesContext.addMessage(
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Tags attached",
 						"Tags successfully attached."));
+		facesContext.getExternalContext().getFlash().setKeepMessages(true);
+		// TODO: investigate if this can be handled in a seam 3 way
 		task.finish();
 		return "/home.xhtml?faces-redirect=true";
 	}
@@ -43,7 +50,15 @@ public class AttachTagsAction implements Serializable {
 	}
 
 	public List<Tag> getTags() {
-		return task.getTags();
+		return new ArrayList<Tag>(task.getTags());
 	}
 
+	public Tag[] getSelectedTags() {
+		return selectedTags;
+	}
+	
+	public void setSelectedTags(Tag[] selectedTags) {
+		this.selectedTags = selectedTags;
+	}
+	
 }

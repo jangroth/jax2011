@@ -26,15 +26,15 @@ public class CreateTodoAction implements Serializable {
 		}
 	}
 
-	public String save() {
+	public String createTodo() {
 		task.saveTodo();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		facesContext.addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Todo created",
-						"Todo sucessfully created."));
+		facesContext.addMessage(null, new FacesMessage(
+				FacesMessage.SEVERITY_INFO, "Todo created", "Todo '"
+						+ task.getTodo().getName()
+						+ "' sucessfully created, please attach tags now."));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
-		//  TODO: investigate if this can be handled in a seam 3 way
+		// TODO: investigate if this can be handled in a seam 3 way
 
 		return "/attachTags.xhtml?faces-redirect=true";
 	}
