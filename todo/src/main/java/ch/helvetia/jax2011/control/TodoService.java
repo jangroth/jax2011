@@ -40,10 +40,10 @@ public class TodoService {
 	/**
 	 * returns all todos from database.
 	 */
-	public List<Todo> findAllTodos() {
-		List<Todo> todos = em.createNamedQuery("findAllTodos", Todo.class)
-				.getResultList();
-		return todos;
+	public List<Todo> findAllTodos(Date callDate) {
+		TypedQuery<Todo> query = em.createNamedQuery("findAllTodos", Todo.class);
+		query.setParameter("callDate", callDate);
+		return query.getResultList();
 	}
 
 	/**
@@ -53,8 +53,7 @@ public class TodoService {
 		TypedQuery<Todo> query = em.createNamedQuery("findAllTodosByTag",
 				Todo.class);
 		query.setParameter("tag", tag.getId());
-		List<Todo> todos = query.getResultList();
-		return todos;
+		return query.getResultList();
 	}
 
 }

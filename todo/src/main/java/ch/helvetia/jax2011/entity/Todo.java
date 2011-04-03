@@ -21,13 +21,13 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * A todo item. 
+ * A todo item.
  */
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "findAllTodos", query = "SELECT t FROM Todo t ORDER BY t.dueDate ASC"),
+		@NamedQuery(name = "findAllTodos", query = "SELECT t FROM Todo t WHERE t.dueDate > :callDate ORDER BY t.dueDate ASC"),
 		@NamedQuery(name = "findAllTodosByTag", query = "SELECT todo FROM Todo todo JOIN todo.tags tag WHERE tag.id = :tag ORDER BY todo.dueDate ASC") })
-public class Todo {
+		public class Todo {
 
 	@GeneratedValue
 	@Id

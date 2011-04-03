@@ -1,12 +1,12 @@
 package ch.helvetia.jax2011.boundary;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
@@ -22,15 +22,15 @@ import ch.helvetia.jax2011.entity.Todo;
 public class ListTodosTask implements Serializable {
 
 	@Inject
-	private Conversation conversation;
-
-	@Inject
 	private TodoService todoService;
 
 	private List<Todo> todos;
 
-	public void findAllTodos() {
-		todos = todoService.findAllTodos();
+	/**
+	 * Returns all todos which are due from a specific date on. 
+	 */
+	public void findAllTodos(Date callDate) {
+		todos = todoService.findAllTodos(callDate);
 	}
 
 	public List<Todo> getTodos() {

@@ -2,7 +2,6 @@ package ch.helvetia.jax2011.boundary;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 import javax.ejb.Stateful;
