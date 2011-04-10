@@ -1,6 +1,7 @@
 package ch.helvetia.jax2011.web;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -21,6 +22,8 @@ public class AttachTagsAction implements Serializable {
 	@Inject
 	private CreateTodoTask task;
 
+	private Tag[] selectedTags;
+
 	// TODO: introduce seam3 view-action
 	public void init() {
 		if (!FacesContext.getCurrentInstance().isPostback()) {
@@ -28,14 +31,29 @@ public class AttachTagsAction implements Serializable {
 		}
 	}
 
-	public String save() {
+	public String attachTags() {
+		task.addTags(selectedTags);
 		task.saveTodo();
-		FacesContext.getCurrentInstance().addMessage(
-				null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Tags attached",
-						"Tags successfully attached."));
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		facesContext.addMessage(null, new FacesMessage(
+				FacesMessage.SEVERITY_INFO, "Tags attached", getMessage()));
+		facesContext.getExternalContext().getFlash().setKeepMessages(true);
+		// TODO: investigate if this can be handled in a seam 3 way
 		task.finish();
 		return "/home.xhtml?faces-redirect=true";
+	}
+
+	private String getMessage() {
+		String result;
+		if (selectedTags.length == 0) {
+			result = "No tags were attached.";
+		} else {
+			result = "Attached tags:";
+			for (Tag tag : selectedTags) {
+				result += " " + tag.getName();
+			}
+		}
+		return result;
 	}
 
 	public Todo getTodo() {
@@ -43,7 +61,15 @@ public class AttachTagsAction implements Serializable {
 	}
 
 	public List<Tag> getTags() {
-		return task.getTags();
+		return new ArrayList<Tag>(task.getTags());
+	}
+
+	public Tag[] getSelectedTags() {
+		return selectedTags;
+	}
+
+	public void setSelectedTags(Tag[] selectedTags) {
+		this.selectedTags = selectedTags;
 	}
 
 }

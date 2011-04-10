@@ -29,8 +29,11 @@
 
 		<h:form id="contentForm" styleClass="content">
 			<div id="leftcolumn">
-				<p:calendar value="#{homeAction.callDate}" navigator="false" mode="inline"
-					display="inline" />
+				<p:calendar value="#{listTodosAction.callDate}" navigator="false"
+					mode="inline" selectListener="#{listTodosAction.dateChanged}" 
+					onSelectUpdate="contentForm" showButtonPanel="true"
+					/>
+				<p:tagCloud model="#{listTodosAction.tagCloudModel}" />
 			</div>
 
 			<div id="rightcolumn">
@@ -39,7 +42,7 @@
 					<p:menuitem value="#{title}" url="#" />
 				</p:breadCrumb>
 				<br />
-				<p:growl id="growl" showDetail="true" globalOnly="false"
+				<p:growl id="growl" showDetail="true" globalOnly="true"
 					sticky="false" life="5000" />
 				<ui:insert name="content" />
 			</div>

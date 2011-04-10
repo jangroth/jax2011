@@ -1,7 +1,8 @@
 package ch.helvetia.jax2011.boundary;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Set;
 
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -34,17 +35,33 @@ public class CreateTodoTask implements Serializable {
 
 	private Todo todo;
 
-	private List<Tag> tags;
+	private Set<Tag> tags;
 
+	/**
+	 * initialize class-attribute with new todo from service 
+	 */
 	public void createTodo() {
 		todo = todoService.createNewTodo();
 		conversation.begin();
 	}
 
+	/**
+	 * retrieve all tags from service
+	 */
 	public void findAllTags() {
 		tags = tagService.findAllTags();
 	}
+	
+	/**
+	 * adds array of selected tags to todo
+	 */
+	public void addTags(Tag[] selectedTags) {
+		todo.getTags().addAll(Arrays.asList(selectedTags));
+	}
 
+	/**
+	 * calls service method in transactional context
+	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveTodo() {
 		todoService.saveTodo(todo);
@@ -54,12 +71,16 @@ public class CreateTodoTask implements Serializable {
 		conversation.end();
 	}
 
+	//
+	// getter & setter
+	//
+	
 	public Todo getTodo() {
 		return todo;
 	}
 
-	public List<Tag> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
-
+	
 }
