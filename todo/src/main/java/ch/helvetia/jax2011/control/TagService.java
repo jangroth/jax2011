@@ -1,11 +1,13 @@
 package ch.helvetia.jax2011.control;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
@@ -47,8 +49,10 @@ public class TagService {
 	 * returning resultlist contains tag and count(tag)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Object[]> countTags() {
-		return em.createNamedQuery("countTags").getResultList();
+	public List<Object[]> countTags(Date callDate) {
+		Query query = em.createNamedQuery("countTags");
+		query.setParameter("callDate", callDate);
+		return query.getResultList();
 	}
 
 }

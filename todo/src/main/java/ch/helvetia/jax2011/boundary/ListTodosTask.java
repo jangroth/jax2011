@@ -35,11 +35,10 @@ public class ListTodosTask implements Serializable {
 	 */
 	public void findAllTodos(Date callDate) {
 		todos = todoService.findAllTodos(callDate);
-		tagService.countTags();
 	}
 
-	public List<Object[]> countTags() {
-		return tagService.countTags();
+	public List<Object[]> countTags(Date callDate) {
+		return tagService.countTags(callDate);
 	}
 
 	public List<Todo> getTodos() {

@@ -41,11 +41,12 @@ public class ListTodosAction implements Serializable {
 	public void dateChanged(DateSelectEvent e) {
 		callDate = e.getDate();
 		task.findAllTodos(callDate);
+		initTagCloudModel();
 	}
 
 	private void initTagCloudModel() {
 		TagCloudModel result = new DefaultTagCloudModel();
-		for (Object[] tagCount : task.countTags()) {
+		for (Object[] tagCount : task.countTags(callDate)) {
 			Tag loopTag = (Tag) tagCount[0];
 			int loopCount = ((Long) tagCount[1]).intValue();
 			result.addTag(new DefaultTagCloudItem(loopTag.getName(), "#",
