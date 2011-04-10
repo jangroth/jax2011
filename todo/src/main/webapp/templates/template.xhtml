@@ -30,7 +30,9 @@
 		<h:form id="contentForm" styleClass="content">
 			<div id="leftcolumn">
 				<p:calendar value="#{listTodosAction.callDate}" navigator="false"
-					mode="inline" selectListener="#{listTodosAction.dateChanged}" />
+					mode="inline" selectListener="#{listTodosAction.dateChanged}" 
+					onSelectUpdate="contentForm"
+					/>
 			</div>
 
 			<div id="rightcolumn">

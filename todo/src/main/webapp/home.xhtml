@@ -15,7 +15,7 @@
 	<ui:param name="title" value="home" />
 	<ui:define name="content">
 		<p:dataTable value="#{listTodosAction.todos}" var="todo"
-			emptyMessage="hooray, you got nothing to do!">
+			emptyMessage="hooray, you've got nothing to do!">
 			<p:column headerText="due date">
 				<h:outputText value="#{todo.dueDate}">
 					<f:convertDateTime pattern="MM/dd/yyyy" /> 

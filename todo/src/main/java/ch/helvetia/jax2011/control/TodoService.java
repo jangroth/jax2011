@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.apache.log4j.Logger;
+
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
 import ch.helvetia.jax2011.entity.Tag;
@@ -21,6 +23,9 @@ public class TodoService {
 	@Inject
 	@TodoDb
 	private EntityManager em;
+
+	// todo: use Solder for logging
+	private Logger logger = Logger.getLogger(TodoService.class);
 
 	public Todo createNewTodo() {
 		Todo result = new Todo();
@@ -41,9 +46,12 @@ public class TodoService {
 	 * returns all todos from database.
 	 */
 	public List<Todo> findAllTodos(Date callDate) {
-		TypedQuery<Todo> query = em.createNamedQuery("findAllTodos", Todo.class);
+		TypedQuery<Todo> query = em
+				.createNamedQuery("findAllTodos", Todo.class);
 		query.setParameter("callDate", callDate);
-		return query.getResultList();
+		List<Todo> result = query.getResultList();
+		logger.info("found " + result.size() + " todos for " + callDate);
+		return result;
 	}
 
 	/**
