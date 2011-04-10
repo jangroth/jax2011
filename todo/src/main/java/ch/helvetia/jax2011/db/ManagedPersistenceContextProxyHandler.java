@@ -21,7 +21,9 @@ public class ManagedPersistenceContextProxyHandler implements InvocationHandler 
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		this.joinTransaction();
+		if (!"joinTransaction".equals(method.getName())) {
+			this.joinTransaction();
+		}
 		return method.invoke(delegate, args);
 	}
 
