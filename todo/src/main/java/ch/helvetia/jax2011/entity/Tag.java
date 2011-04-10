@@ -12,7 +12,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * A tag to categorize todo-items.
  */
 @Entity
-@NamedQueries(value = { @NamedQuery(name = "findAllTags", query = "SELECT t FROM Tag t") })
+@NamedQueries(value = {
+		@NamedQuery(name = "findAllTags", query = "SELECT t FROM Tag t"),
+		@NamedQuery(name = "countTags", query = "SELECT tg, count(tg) FROM Todo td LEFT JOIN td.tags tg GROUP BY tg.name") })
 public class Tag implements Comparable<Tag> {
 
 	@GeneratedValue

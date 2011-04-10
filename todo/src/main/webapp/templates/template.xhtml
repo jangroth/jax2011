@@ -31,8 +31,9 @@
 			<div id="leftcolumn">
 				<p:calendar value="#{listTodosAction.callDate}" navigator="false"
 					mode="inline" selectListener="#{listTodosAction.dateChanged}" 
-					onSelectUpdate="contentForm"
+					onSelectUpdate="contentForm" showButtonPanel="true"
 					/>
+				<p:tagCloud model="#{listTodosAction.tagCloudModel}" />
 			</div>
 
 			<div id="rightcolumn">

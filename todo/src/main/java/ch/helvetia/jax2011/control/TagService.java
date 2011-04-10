@@ -42,5 +42,13 @@ public class TagService {
 				.getResultList();
 		return new TreeSet<Tag>(tags);
 	}
-	
+
+	/**
+	 * returning resultlist contains tag and count(tag)
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Object[]> countTags() {
+		return em.createNamedQuery("countTags").getResultList();
+	}
+
 }

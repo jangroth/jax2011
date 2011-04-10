@@ -10,6 +10,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
+import ch.helvetia.jax2011.control.TagService;
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Todo;
 
@@ -24,13 +25,21 @@ public class ListTodosTask implements Serializable {
 	@Inject
 	private TodoService todoService;
 
+	@Inject
+	private TagService tagService;
+
 	private List<Todo> todos;
 
 	/**
-	 * Returns all todos which are due from a specific date on. 
+	 * Returns all todos which are due from a specific date on.
 	 */
 	public void findAllTodos(Date callDate) {
 		todos = todoService.findAllTodos(callDate);
+		tagService.countTags();
+	}
+
+	public List<Object[]> countTags() {
+		return tagService.countTags();
 	}
 
 	public List<Todo> getTodos() {
