@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<ui:composition template="/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+	<ui:param name="title" value="Error" />
+	<ui:define name="content">
+		<!-- only used to add the messages css -->
+		<p:messages rendered="false" />
+
+		<h:panelGroup styleClass="ui-messages ui-widget" layout="block">
+			<h:panelGroup styleClass="ui-messages-error ui-corner-all"
+				layout="block">
+				<h:panelGroup styleClass="ui-messages-error-icon" />
+				<h:panelGroup styleClass="ui-messages-error-summary">
+					<h:outputText
+						value="#{flash['handledException'].localizedMessage}" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+
+		<p:panel header="Error Details" toggleable="false">
+			<h:panelGrid columns="2">
+				<h:outputText value="User:" />
+				<h:outputText value="#{flash['user']}" />
+				<h:outputText value="Date:" />
+				<h:outputText value="#{flash['date']}">
+					<f:convertDateTime locale="de_CH" dateStyle="medium"
+						timeStyle="medium" type="both" />
+				</h:outputText>
+				<h:outputText value="Type:" />
+				<h:outputText
+					value="#{flash['handledException'].cause.class.name}" />
+				<h:outputText value="Message:" />
+				<h:outputText
+					value="#{flash['handledException'].cause.localizedMessage}" />
+			</h:panelGrid>
+		</p:panel>
+
+		<p:panel header="Stack Trace" toggleable="true" collapsed="true">
+			<h:outputText value="#{flash['stackTrace']}"
+				escape="false" />
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
