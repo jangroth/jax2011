@@ -65,6 +65,12 @@
 			<artifactId>guava</artifactId>
 			<version>r07</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.0.0.Beta5</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- db dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
