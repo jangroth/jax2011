@@ -6,16 +6,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-
-	<h:form id="navigationForm">
-		<p:menubar>
-			<p:menuitem action="home.xhtml?faces-redirect=true" value="Home"
-				ajax="false" />
-			<p:menuitem action="createTodo.xhtml?faces-redirect=true"
-				value="New Todo" ajax="false" />
-			<p:menuitem action="createTodo.xhtml?faces-redirect=true"
-				value="New Tag" ajax="false" />
-		</p:menubar>
-	</h:form>
+	<p:calendar value="#{listTodosAction.filterDate}" navigator="false"
+		mode="inline" selectListener="#{listTodosAction.dateChanged}"
+		onSelectUpdate="contentForm" showButtonPanel="true" />
+	<p:tagCloud model="#{listTodosAction.tagCloudModel}" />
 
 </ui:composition>

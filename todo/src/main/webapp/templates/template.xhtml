@@ -29,11 +29,7 @@
 
 		<h:form id="contentForm" styleClass="content">
 			<div id="leftcolumn">
-				<p:calendar value="#{listTodosAction.filterDate}" navigator="false"
-					mode="inline" selectListener="#{listTodosAction.dateChanged}" 
-					onSelectUpdate="contentForm" showButtonPanel="true"
-					/>
-				<p:tagCloud model="#{listTodosAction.tagCloudModel}" />
+				<ui:include src="/templates/sidebar.xhtml" />
 			</div>
 
 			<div id="rightcolumn">
