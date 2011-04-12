@@ -77,12 +77,6 @@
 			<version>r07</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<version>3.0.0.Beta5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.jboss.weld</groupId>
 			<artifactId>weld-core</artifactId>
 			<version>1.1.1.Final</version>
@@ -97,6 +91,25 @@
 		</dependency>
 		<!-- seam 3 dependencies -->
 
+		<!-- logging dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.0.0.Beta5</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- web dependencies -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -131,18 +144,6 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.8.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
