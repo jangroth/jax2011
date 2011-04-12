@@ -25,9 +25,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @NamedQueries(value = {
-		@NamedQuery(name = "findAllTodos", query = "SELECT t FROM Todo t WHERE t.dueDate > :callDate ORDER BY t.dueDate ASC"),
-		@NamedQuery(name = "findAllTodosByTag", query = "SELECT todo FROM Todo todo JOIN todo.tags tag WHERE tag.id = :tag ORDER BY todo.dueDate ASC") })
-		public class Todo {
+		@NamedQuery(name = "findTodosByDate", query = "SELECT td FROM Todo td WHERE td.dueDate > :filterDate ORDER BY td.dueDate ASC"),
+		@NamedQuery(name = "findTodosByDateAndTag", query = "SELECT td FROM Todo td JOIN td.tags tg WHERE td.dueDate > :filterDate AND tg.id = :filterTagId ORDER BY td.dueDate ASC") })
+public class Todo {
 
 	@GeneratedValue
 	@Id

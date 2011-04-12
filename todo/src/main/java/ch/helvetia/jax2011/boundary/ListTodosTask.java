@@ -33,8 +33,8 @@ public class ListTodosTask implements Serializable {
 	/**
 	 * Returns all todos which are due from a specific date on.
 	 */
-	public void findAllTodos(Date callDate) {
-		todos = todoService.findAllTodos(callDate);
+	public void findAllTodos(Date callDate, Long filterTag) {
+		todos = todoService.findTodos(callDate, filterTag);
 	}
 
 	public List<Object[]> countTags(Date callDate) {

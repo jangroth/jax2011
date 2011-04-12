@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
-import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
 
 /**
@@ -29,6 +28,7 @@ public class TodoService {
 
 	public Todo createNewTodo() {
 		Todo result = new Todo();
+		// set dueDate to tomorrow...
 		result.setDueDate(new Date(System.currentTimeMillis() + 1000 * 60 * 60
 				* 24));
 		return result;
@@ -43,25 +43,22 @@ public class TodoService {
 	}
 
 	/**
-	 * returns all todos from database.
+	 * returns todos from database.
 	 */
-	public List<Todo> findAllTodos(Date callDate) {
-		TypedQuery<Todo> query = em
-				.createNamedQuery("findAllTodos", Todo.class);
-		query.setParameter("callDate", callDate);
+	public List<Todo> findTodos(Date filterDate, Long filterTagId) {
+		TypedQuery<Todo> query;
+		if (filterTagId != null) {
+			query = em.createNamedQuery("findTodosByDateAndTag", Todo.class);
+			query.setParameter("filterDate", filterDate);
+			query.setParameter("filterTagId", filterTagId);
+		} else {
+			query = em.createNamedQuery("findTodosByDate", Todo.class);
+			query.setParameter("filterDate", filterDate);
+		}
 		List<Todo> result = query.getResultList();
-		logger.info("found " + result.size() + " todos for " + callDate);
+		logger.info("found " + result.size() + " todos for tag: " + filterTagId
+				+ " and date: " + filterDate);
 		return result;
-	}
-
-	/**
-	 * returns all todos with a specific tag
-	 */
-	public List<Todo> findAllTodosByTag(Tag tag) {
-		TypedQuery<Todo> query = em.createNamedQuery("findAllTodosByTag",
-				Todo.class);
-		query.setParameter("tag", tag.getId());
-		return query.getResultList();
 	}
 
 }

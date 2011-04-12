@@ -26,31 +26,33 @@ public class ListTodosAction implements Serializable {
 	@Inject
 	private ListTodosTask task;
 
-	private Date callDate = new Date();
+	private Date filterDate = new Date();
+
+	private Long filterTagId = null;
 
 	private TagCloudModel tagCloudModel = new DefaultTagCloudModel();
 
 	// TODO: introduce seam3 view-action
 	public void init() {
 		if (!FacesContext.getCurrentInstance().isPostback()) {
-			task.findAllTodos(callDate);
+			task.findAllTodos(filterDate, filterTagId);
 			initTagCloudModel();
 		}
 	}
 
 	public void dateChanged(DateSelectEvent e) {
-		callDate = e.getDate();
-		task.findAllTodos(callDate);
+		filterDate = e.getDate();
+		task.findAllTodos(filterDate, filterTagId);
 		initTagCloudModel();
 	}
 
 	private void initTagCloudModel() {
 		TagCloudModel result = new DefaultTagCloudModel();
-		for (Object[] tagCount : task.countTags(callDate)) {
+		for (Object[] tagCount : task.countTags(filterDate)) {
 			Tag loopTag = (Tag) tagCount[0];
 			int loopCount = ((Long) tagCount[1]).intValue();
-			result.addTag(new DefaultTagCloudItem(loopTag.getName(), "#",
-					loopCount));
+			result.addTag(new DefaultTagCloudItem(loopTag.getName(),
+					"/home.xhtml?filterTagId=" + loopTag.getId(), loopCount));
 		}
 		tagCloudModel = result;
 	}
@@ -59,12 +61,20 @@ public class ListTodosAction implements Serializable {
 	// getter & setter
 	//
 
-	public Date getCallDate() {
-		return callDate;
+	public Date getFilterDate() {
+		return filterDate;
 	}
 
-	public void setCallDate(Date callDate) {
-		this.callDate = callDate;
+	public void setFilterDate(Date filterDate) {
+		this.filterDate = filterDate;
+	}
+
+	public Long getFilterTagId() {
+		return filterTagId;
+	}
+
+	public void setFilterTagId(Long filterTagId) {
+		this.filterTagId = filterTagId;
 	}
 
 	public List<Todo> getTodos() {
