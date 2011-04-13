@@ -5,4 +5,15 @@
 	<factory>
 		<exception-handler-factory>ch.helvetia.jax2011.error.TodoExceptionHandlerFactory</exception-handler-factory>
 	</factory>
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>bundle</var>
+		</resource-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>en</supported-locale>
+			<supported-locale>ch</supported-locale>
+		</locale-config>
+	</application>
 </faces-config>
