@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -27,6 +28,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NamedQueries(value = {
 		@NamedQuery(name = "findTodosByDate", query = "SELECT td FROM Todo td WHERE td.dueDate > :filterDate ORDER BY td.dueDate ASC"),
 		@NamedQuery(name = "findTodosByDateAndTag", query = "SELECT td FROM Todo td JOIN td.tags tg WHERE td.dueDate > :filterDate AND tg.id = :filterTagId ORDER BY td.dueDate ASC") })
+@XmlRootElement
 public class Todo {
 
 	@GeneratedValue
