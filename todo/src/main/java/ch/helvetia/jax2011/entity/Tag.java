@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @NamedQueries(value = {
 		@NamedQuery(name = "findAllTags", query = "SELECT t FROM Tag t"),
-		@NamedQuery(name = "countTags", query = "SELECT tg, count(tg) FROM Todo td LEFT JOIN td.tags tg WHERE td.dueDate > :callDate GROUP BY tg.name") })
+		@NamedQuery(name = "countTags", query = "SELECT tg, count(tg) FROM Todo td LEFT JOIN td.tags tg WHERE td.dueDate > :callDate AND td.tags IS NOT EMPTY GROUP BY tg.name") })
 public class Tag implements Comparable<Tag> {
 
 	@GeneratedValue
