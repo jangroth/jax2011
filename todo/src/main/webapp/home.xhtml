@@ -12,6 +12,7 @@
 		<f:event type="javax.faces.event.PreRenderViewEvent"
 			listener="#{listTodosAction.init}" />
 		<f:viewParam name="filterTagId" value="#{listTodosAction.filterTagId}" />
+		<f:viewParam name="filterDate" value="#{listTodosAction.filterDate}" />
 	</f:metadata>
 	<ui:param name="title" value="home" />
 	<ui:define name="content">
