@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet name="main.css" library="css" />
+	<title>TodoApp - JAX 2011</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</h:head>
+
+<h:body>
+
+	<h:panelGroup id="wrapper" layout="block">
+
+		<div id="header">
+			<a href="home.xhtml"> <h:graphicImage library="images"
+					style="float:left" name="header_left.png" /> </a>
+			<h:graphicImage library="images" style="float:right"
+				name="header_right.png" />
+		</div>
+
+		<h:form id="contentForm" styleClass="content">
+			<p:growl id="growl" showDetail="true" globalOnly="true"
+				sticky="false" life="5000" autoUpdate="true" />
+			<h:panelGrid columns="4">
+				<h:outputLabel for="username">Username:</h:outputLabel>
+				<h:inputText id="username" value="#{credentials.username}" />
+				<p:watermark for="username" value="username..." />
+				<p:message for="username" />
+				<h:outputLabel for="password">Password:</h:outputLabel>
+				<h:inputSecret id="password" value="#{credentials.password}" />
+				<p:watermark for="password" value="password..." />
+				<p:message for="password" />
+			</h:panelGrid>
+			<p:commandButton value="Login" action="#{loginAction.login}"
+				ajax="false" />
+		</h:form>
+
+		<h:panelGroup id="footer" layout="block">
+			<h:outputText value="Version #{appVersion.version}" />
+		</h:panelGroup>
+
+	</h:panelGroup>
+
+</h:body>
+</html>
