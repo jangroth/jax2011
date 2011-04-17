@@ -14,7 +14,7 @@
 
 <h:body>
 
-	<div id="wrapper">
+	<h:panelGroup id="wrapper" layout="block">
 
 		<div id="header">
 			<a href="home.xhtml"> <h:graphicImage library="images"
@@ -42,13 +42,13 @@
 					sticky="false" life="5000" />
 				<ui:insert name="content" />
 			</div>
-
 		</h:form>
+
 		<div id="footer">
 			<h:outputText value="Version #{appVersion.version}" />
 		</div>
 
-	</div>
+	</h:panelGroup>
 
 </h:body>
 </html>
