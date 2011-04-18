@@ -35,6 +35,7 @@ public class ListTodosAction implements Serializable {
 	// TODO: introduce seam3 view-action
 	public void init() {
 		if (!FacesContext.getCurrentInstance().isPostback()) {
+			task.init();
 			task.findAllTodos(filterDate, filterTagId);
 			initTagCloudModel();
 		}

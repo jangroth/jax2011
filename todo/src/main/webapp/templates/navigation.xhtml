@@ -9,12 +9,21 @@
 
 	<h:form id="navigationForm">
 		<p:menubar>
+<<<<<<< HEAD
 			<p:menuitem action="home.xhtml?faces-redirect=true" value="#{bundle.homePage}"
 				ajax="false" />
 			<p:menuitem action="createTodo.xhtml?faces-redirect=true"
 				value="#{bundle.homeNewTodo}" ajax="false" />
 			<p:menuitem action="createTodo.xhtml?faces-redirect=true"
 				value="#{bundle.homeNewTag}" ajax="false" />
+=======
+			<p:menuitem action="#{navigationAction.goToHome}"
+				value="#{bundle.homePage}" immediate="true" />
+			<p:menuitem action="#{navigationAction.goToCreateTodo}"
+				value="New Todo" immediate="true" />
+			<p:menuitem action="#{navigationAction.goToCreateTodo}"
+				value="New Tag" immediate="true" />
+>>>>>>> 3c553dd867996129a6d3b8eaaf5bedae6ba25325
 		</p:menubar>
 		<h:selectOneMenu>
 			<f:selectItem itemLabel="english" itemValue="en"/>

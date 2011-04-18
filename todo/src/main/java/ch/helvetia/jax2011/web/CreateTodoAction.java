@@ -35,7 +35,7 @@ public class CreateTodoAction implements Serializable {
 						+ "' sucessfully created, please attach tags now."));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		// TODO: investigate if this can be handled in a seam 3 way
-
+		task.finish();
 		return "/attachTags.xhtml?faces-redirect=true";
 	}
 

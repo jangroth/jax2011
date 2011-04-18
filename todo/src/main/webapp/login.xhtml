@@ -23,30 +23,26 @@
 				name="header_right.png" />
 		</div>
 
-		<div id="navigation">
-			<ui:include src="/templates/navigation.xhtml" />
-		</div>
-
 		<h:form id="contentForm" styleClass="content">
-			<div id="leftcolumn">
-				<ui:include src="/templates/sidebar.xhtml" />
-			</div>
-
-			<div id="rightcolumn">
-				<p:breadCrumb>
-					<p:menuitem value="home" action="#{navigationAction.goToHome}" immediate="true" />
-					<p:menuitem value="#{title}" url="#" />
-				</p:breadCrumb>
-				<br />
-				<p:growl id="growl" showDetail="true" globalOnly="true"
-					sticky="false" life="5000" />
-				<ui:insert name="content" />
-			</div>
+			<p:growl id="growl" showDetail="true" globalOnly="true"
+				sticky="false" life="5000" autoUpdate="true" />
+			<h:panelGrid columns="4">
+				<h:outputLabel for="username">Username:</h:outputLabel>
+				<h:inputText id="username" value="#{credentials.username}" />
+				<p:watermark for="username" value="username..." />
+				<p:message for="username" />
+				<h:outputLabel for="password">Password:</h:outputLabel>
+				<h:inputSecret id="password" value="#{credentials.password}" />
+				<p:watermark for="password" value="password..." />
+				<p:message for="password" />
+			</h:panelGrid>
+			<p:commandButton value="Login" action="#{loginAction.login}"
+				ajax="false" />
 		</h:form>
 
-		<div id="footer">
+		<h:panelGroup id="footer" layout="block">
 			<h:outputText value="Version #{appVersion.version}" />
-		</div>
+		</h:panelGroup>
 
 	</h:panelGroup>
 

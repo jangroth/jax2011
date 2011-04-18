@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
@@ -23,12 +24,19 @@ import ch.helvetia.jax2011.entity.Todo;
 public class ListTodosTask implements Serializable {
 
 	@Inject
+	private Conversation conversation;
+
+	@Inject
 	private TodoService todoService;
 
 	@Inject
 	private TagService tagService;
 
 	private List<Todo> todos;
+
+	public void init() {
+		conversation.begin();
+	}
 
 	/**
 	 * Returns all todos which are due from a specific date on.
@@ -39,6 +47,10 @@ public class ListTodosTask implements Serializable {
 
 	public List<Object[]> countTags(Date callDate) {
 		return tagService.countTags(callDate);
+	}
+
+	public void finish() {
+		conversation.end();
 	}
 
 	public List<Todo> getTodos() {

@@ -17,7 +17,7 @@
 		<h:panelGrid columns="4">
 			<h:outputLabel value="name:" for="name" />
 			<p:inputText id="name" value="#{createTodoAction.todo.name}" />
-			<p:watermark for="name" value="...reference name..." />  
+			<p:watermark for="name" value="reference name..." />  
 			<p:message for="name" />
 
 			<h:outputLabel value="due date: " for="dueDate" />
@@ -28,7 +28,7 @@
 			<h:outputLabel value="description: " for="description" />
 			<p:inputTextarea id="description"
 				value="#{createTodoAction.todo.description}" />
-			<p:watermark for="description" value="...what to do..." />
+			<p:watermark for="description" value="what to do..." />
 			<p:message for="description" />
 		</h:panelGrid>
 		<br />
