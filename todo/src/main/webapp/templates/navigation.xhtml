@@ -12,10 +12,14 @@
 			<p:menuitem action="home.xhtml?faces-redirect=true" value="#{bundle.homePage}"
 				ajax="false" />
 			<p:menuitem action="createTodo.xhtml?faces-redirect=true"
-				value="New Todo" ajax="false" />
+				value="#{bundle.homeNewTodo}" ajax="false" />
 			<p:menuitem action="createTodo.xhtml?faces-redirect=true"
-				value="New Tag" ajax="false" />
+				value="#{bundle.homeNewTag}" ajax="false" />
 		</p:menubar>
+		<h:selectOneMenu>
+			<f:selectItem itemLabel="english" itemValue="en"/>
+			<f:selectItem itemLabel="schwitzerdütsch" itemValue="ch"/>
+		</h:selectOneMenu>
 	</h:form>
 
 </ui:composition>
