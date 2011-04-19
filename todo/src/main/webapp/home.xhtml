@@ -15,12 +15,16 @@
 		<f:viewParam name="filterDate" value="#{listTodosAction.filterDate}" />
 	</f:metadata>
 	<ui:param name="title" value="home" />
+	<ui:define name="leftcontent">
+		<ui:include src="/templates/sidebar.xhtml" />
+	</ui:define>
+
 	<ui:define name="content">
 		<p:dataTable value="#{listTodosAction.todos}" var="todo"
 			emptyMessage="hooray, you've got nothing to do!">
 			<p:column headerText="#{bundle.homeDueDate}">
 				<h:outputText value="#{todo.dueDate}">
-					<f:convertDateTime pattern="MM/dd/yyyy" /> 
+					<f:convertDateTime pattern="MM/dd/yyyy" />
 				</h:outputText>
 			</p:column>
 			<p:column headerText="#{bundle.homeStatus}">
@@ -34,7 +38,7 @@
 			</p:column>
 			<p:column headerText="#{bundle.homeTags}">
 				<p:dataList value="#{todo.tagsAsList}" var="tag"
-					rendered="#{! empty todo.tags}" itemType="none" >
+					rendered="#{! empty todo.tags}" itemType="none">
 					<h:outputText value="#{tag.name}" />
 				</p:dataList>
 			</p:column>

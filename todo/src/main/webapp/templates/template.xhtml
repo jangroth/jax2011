@@ -17,30 +17,34 @@
 	<h:panelGroup id="wrapper" layout="block">
 
 		<div id="header">
-			<a href="home.xhtml"> <h:graphicImage library="images"
-					style="float:left" name="header_left.png" /> </a>
-			<h:graphicImage library="images" style="float:right"
-				name="header_right.png" />
+			<h:form id="headerForm">
+				<p:commandLink action="#{navigationAction.goToHome()}">
+					<h:graphicImage library="images" style="float:left;border:none"
+						name="header_left.png" />
+				</p:commandLink>
+				<h:graphicImage library="images" style="float:right"
+					name="header_right.png" />
+			</h:form>
 		</div>
 
 		<div id="navigation">
 			<ui:include src="/templates/navigation.xhtml" />
 		</div>
 
-		<h:form id="contentForm" styleClass="content">
+		<h:form id="contentForm">
 			<div id="leftcolumn">
-				<ui:include src="/templates/sidebar.xhtml" />
+				<ui:insert name="leftcontent" />
 			</div>
-
 			<div id="rightcolumn">
 				<p:breadCrumb>
-					<p:menuitem value="home" action="#{navigationAction.goToHome}" immediate="true" />
+					<p:menuitem value="home" action="#{navigationAction.goToHome}"
+						immediate="true" />
 					<p:menuitem value="#{title}" url="#" />
 				</p:breadCrumb>
 				<br />
+				<ui:insert name="content" />
 				<p:growl id="growl" showDetail="true" globalOnly="true"
 					sticky="false" life="5000" />
-				<ui:insert name="content" />
 			</div>
 		</h:form>
 

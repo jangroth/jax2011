@@ -8,22 +8,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form id="navigationForm">
-		<h:panelGrid columns="2">
-			<p:menubar>
-				<p:menuitem action="#{navigationAction.goToHome}"
+		<p:toolbar>
+			<p:toolbarGroup align="left">
+				<p:commandButton action="#{navigationAction.goToHome}"
 					value="#{bundle.homePage}" immediate="true" />
-				<p:menuitem action="#{navigationAction.goToCreateTodo}"
+				<p:commandButton action="#{navigationAction.goToCreateTodo}"
 					value="New Todo" immediate="true" />
-				<p:menuitem action="#{navigationAction.goToCreateTag}"
+				<p:commandButton action="#{navigationAction.goToCreateTag}"
 					value="New Tag" immediate="true" />
-			</p:menubar>
-			<h:selectOneMenu value="#{localeSelector.language}"
-				valueChangeListener="#{localeSelector.processValueChange}"
-				onchange="submit()">
-				<f:selectItem itemLabel="english" itemValue="en" />
-				<f:selectItem itemLabel="schwitzerdütsch" itemValue="ch" />
-			</h:selectOneMenu>
-		</h:panelGrid>
+				<p:commandButton action="#{navigationAction.logout}" value="Logout"
+					immediate="true" rendered="#{identity.loggedIn}" />
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<h:selectOneMenu value="#{localeSelector.language}"
+					valueChangeListener="#{localeSelector.processValueChange}"
+					onchange="submit()">
+					<f:selectItem itemLabel="english" itemValue="en" />
+					<f:selectItem itemLabel="schwitzerdütsch" itemValue="ch" />
+				</h:selectOneMenu>
+			</p:toolbarGroup>
+		</p:toolbar>
 	</h:form>
 
 </ui:composition>

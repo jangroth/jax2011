@@ -6,6 +6,7 @@ import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
 import ch.helvetia.jax2011.common.stereotypes.Action;
+import ch.helvetia.jax2011.security.Identity;
 
 /**
  * Action for navigation - end current conversation and redirect to new view
@@ -16,19 +17,31 @@ public class NavigationAction implements Serializable {
 	@Inject
 	private Conversation conversation;
 
+	@Inject
+	private Identity identity;
+
 	public String goToHome() {
-		conversation.end();
+		endConversation();
 		return "home.xhtml?faces-redirect=true";
 	}
 
 	public String goToCreateTodo() {
-		conversation.end();
+		endConversation();
 		return "createTodo.xhtml?faces-redirect=true";
 	}
 
 	public String goToCreateTag() {
-		conversation.end();
+		endConversation();
 		return "createTag.xhtml?faces-redirect=true";
 	}
 
+	public void logout() {
+		identity.logout();
+	}
+
+	private void endConversation() {
+		if (!conversation.isTransient()) {
+			conversation.end();
+		}
+	}
 }
