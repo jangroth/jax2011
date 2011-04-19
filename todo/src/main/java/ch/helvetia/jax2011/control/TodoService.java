@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
+import org.jboss.logging.Logger;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
@@ -24,7 +24,7 @@ public class TodoService {
 	private EntityManager em;
 
 	// todo: use Solder for logging
-	private Logger logger = Logger.getLogger(TodoService.class);
+	private final Logger logger = Logger.getLogger(TodoService.class);
 
 	public Todo createNewTodo() {
 		Todo result = new Todo();
