@@ -15,6 +15,9 @@ import org.jboss.logging.Logger;
 import ch.helvetia.jax2011.security.Identity;
 import ch.helvetia.jax2011.util.BeanManagerUtil;
 
+/**
+ * Restrict view access
+ */
 public class SecurityPhaseListener implements PhaseListener {
 
 	private static final String LOGIN_VIEW_ID = "/login.xhtml";
@@ -39,7 +42,6 @@ public class SecurityPhaseListener implements PhaseListener {
 			if (!identity.isLoggedIn() && !viewId.equals(LOGIN_VIEW_ID) && !viewId.equals(ERROR_VIEW_ID)) {
 				log.debugf("Redirecting to LoginView %s", LOGIN_VIEW_ID);
 				NavigationHandler navHandler = context.getApplication().getNavigationHandler();
-
 				navHandler.handleNavigation(context, "", LOGIN_VIEW_ID + "?" + "faces-redirect=true");
 				context.renderResponse();
 			}
