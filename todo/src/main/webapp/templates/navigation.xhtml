@@ -8,18 +8,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form id="navigationForm">
-		<p:menubar>
-			<p:menuitem action="#{navigationAction.goToHome}"
-				value="#{bundle.homePage}" immediate="true" />
-			<p:menuitem action="#{navigationAction.goToCreateTodo}"
-				value="New Todo" immediate="true" />
-			<p:menuitem action="#{navigationAction.goToCreateTag}"
-				value="New Tag" immediate="true" />
-		</p:menubar>
-		<h:selectOneMenu>
-			<f:selectItem itemLabel="english" itemValue="en"/>
-			<f:selectItem itemLabel="schwitzerdütsch" itemValue="ch"/>
-		</h:selectOneMenu>
+		<h:panelGrid columns="2">
+			<p:menubar>
+				<p:menuitem action="#{navigationAction.goToHome}"
+					value="#{bundle.homePage}" immediate="true" />
+				<p:menuitem action="#{navigationAction.goToCreateTodo}"
+					value="New Todo" immediate="true" />
+				<p:menuitem action="#{navigationAction.goToCreateTag}"
+					value="New Tag" immediate="true" />
+			</p:menubar>
+			<h:selectOneMenu value="#{localeSelector.language}"
+				valueChangeListener="#{localeSelector.processValueChange}"
+				onchange="submit()">
+				<f:selectItem itemLabel="english" itemValue="en" />
+				<f:selectItem itemLabel="schwitzerdütsch" itemValue="ch" />
+			</h:selectOneMenu>
+		</h:panelGrid>
 	</h:form>
 
 </ui:composition>

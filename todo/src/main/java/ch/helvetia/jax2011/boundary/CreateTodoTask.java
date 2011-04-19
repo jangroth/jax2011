@@ -15,6 +15,7 @@ import ch.helvetia.jax2011.control.TagService;
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
+import ch.helvetia.jax2011.security.Identity;
 
 /**
  * User-Task to create a new todo.
@@ -28,6 +29,9 @@ public class CreateTodoTask implements Serializable {
 	private Conversation conversation;
 
 	@Inject
+	private Identity identity;
+
+	@Inject
 	private TodoService todoService;
 
 	@Inject
@@ -38,9 +42,11 @@ public class CreateTodoTask implements Serializable {
 	private Set<Tag> tags;
 
 	/**
-	 * initialize class-attribute with new todo from service 
+	 * initialize class-attribute with new todo from service
 	 */
 	public void createTodo() {
+		// TODO: replace with Seam Security
+		identity.checkRole("admin");
 		todo = todoService.createNewTodo();
 		conversation.begin();
 	}
@@ -51,7 +57,7 @@ public class CreateTodoTask implements Serializable {
 	public void findAllTags() {
 		tags = tagService.findAllTags();
 	}
-	
+
 	/**
 	 * adds array of selected tags to todo
 	 */
@@ -74,7 +80,7 @@ public class CreateTodoTask implements Serializable {
 	//
 	// getter & setter
 	//
-	
+
 	public Todo getTodo() {
 		return todo;
 	}
@@ -82,5 +88,5 @@ public class CreateTodoTask implements Serializable {
 	public Set<Tag> getTags() {
 		return tags;
 	}
-	
+
 }

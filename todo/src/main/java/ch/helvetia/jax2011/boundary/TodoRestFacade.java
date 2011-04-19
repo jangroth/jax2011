@@ -30,14 +30,14 @@ import ch.helvetia.jax2011.error.ValidationException;
 /**
  * REST service to work with todos
  * 
- * Because the conversation context is not active during REST calls,
- * it's not possible to use the TodoService here
- * TODO use the Seam 3 Conversation module to manage a temporary conversation context
+ * Because the conversation context is not active during REST calls, it's not
+ * possible to use the TodoService here TODO use the Seam 3 Conversation module
+ * to manage a temporary conversation context
  */
 @Path("/rest")
 @Produces("application/xml")
 @Stateless
-public class TodoRestService {
+public class TodoRestFacade {
 
 	@Inject
 	private TodoService todoService;
@@ -49,7 +49,7 @@ public class TodoRestService {
 	private static class ListResponse {
 		private List<Todo> todos;
 
-		@XmlElement(name="todo")
+		@XmlElement(name = "todo")
 		public List<Todo> getTodos() {
 			return todos;
 		}
@@ -64,7 +64,8 @@ public class TodoRestService {
 	@Path("listTodos")
 	public ListResponse listTodos() {
 		EntityManager em = emf.createEntityManager();
-		TypedQuery<Todo> query = em.createNamedQuery("findTodosByDate", Todo.class);
+		TypedQuery<Todo> query = em.createNamedQuery("findTodosByDate",
+				Todo.class);
 		query.setParameter("filterDate", new Date());
 		List<Todo> todos = query.getResultList();
 
@@ -79,12 +80,11 @@ public class TodoRestService {
 	public void newTodo(Todo todo) {
 		// Use Seam REST for validation
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
-        if (violations.size() > 0) {
-        	throw new ValidationException("Validation failed");
-        }
-        
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
+		if (violations.size() > 0) {
+			throw new ValidationException("Validation failed");
+		}
 		EntityManager em = emf.createEntityManager();
 		em.persist(todo);
 	}

@@ -5,7 +5,7 @@ package ch.helvetia.jax2011.security;
  */
 public class User {
 
-	String id;
+	private String id;
 
 	public User(String id) {
 		this.id = id;
