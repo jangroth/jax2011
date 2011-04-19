@@ -36,6 +36,7 @@ public class NavigationAction implements Serializable {
 	}
 
 	public void logout() {
+		endConversation();
 		identity.logout();
 	}
 

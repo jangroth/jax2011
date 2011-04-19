@@ -11,6 +11,8 @@
 	<f:metadata>
 		<f:event type="javax.faces.event.PreRenderViewEvent"
 			listener="#{listTodosAction.init}" />
+		<f:event type="javax.faces.event.PreRenderViewEvent"
+			listener="#{listTodosAction.refresh}" />
 		<f:viewParam name="filterTagId" value="#{listTodosAction.filterTagId}" />
 		<f:viewParam name="filterDate" value="#{listTodosAction.filterDate}" />
 	</f:metadata>

@@ -2,6 +2,7 @@ package ch.helvetia.jax2011.web;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.Conversation;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,11 +18,15 @@ import ch.helvetia.jax2011.entity.Todo;
 public class CreateTodoAction implements Serializable {
 
 	@Inject
+	private Conversation conversation;
+
+	@Inject
 	private CreateTodoTask task;
 
 	// TODO: introduce seam3 view-action
 	public void init() {
-		if (!FacesContext.getCurrentInstance().isPostback()) {
+		if (!FacesContext.getCurrentInstance().isPostback()
+				&& conversation.isTransient()) {
 			task.createTodo();
 		}
 	}
@@ -35,7 +40,6 @@ public class CreateTodoAction implements Serializable {
 						+ "' sucessfully created, please attach tags now."));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		// TODO: investigate if this can be handled in a seam 3 way
-		task.finish();
 		return "/attachTags.xhtml?faces-redirect=true";
 	}
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.enterprise.context.Conversation;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -26,6 +27,9 @@ public class ListTodosAction implements Serializable {
 	@Inject
 	private ListTodosTask task;
 
+	@Inject
+	private Conversation conversation;
+
 	private Date filterDate = new Date();
 
 	private Long filterTagId = null;
@@ -34,8 +38,14 @@ public class ListTodosAction implements Serializable {
 
 	// TODO: introduce seam3 view-action
 	public void init() {
-		if (!FacesContext.getCurrentInstance().isPostback()) {
+		if (!FacesContext.getCurrentInstance().isPostback()
+				&& conversation.isTransient()) {
 			task.init();
+		}
+	}
+
+	public void refresh() {
+		if (!FacesContext.getCurrentInstance().isPostback()) {
 			task.findAllTodos(filterDate, filterTagId);
 			initTagCloudModel();
 		}
@@ -53,7 +63,8 @@ public class ListTodosAction implements Serializable {
 			Tag loopTag = (Tag) tagCount[0];
 			int loopCount = ((Long) tagCount[1]).intValue();
 			result.addTag(new DefaultTagCloudItem(loopTag.getName(),
-					"/home.xhtml?filterTagId=" + loopTag.getId(), loopCount));
+					"/home.xhtml?filterTagId=" + loopTag.getId() + "&cid="
+							+ conversation.getId(), loopCount));
 		}
 		tagCloudModel = result;
 	}
