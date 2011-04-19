@@ -1,12 +1,13 @@
 package ch.helvetia.jax2011.web;
 
+import java.io.Serializable;
 import java.util.Locale;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @SessionScoped
-public class LocaleSelector {
+public class LocaleSelector implements Serializable {
 
 	private Locale locale;
 

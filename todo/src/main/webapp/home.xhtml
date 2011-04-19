@@ -29,10 +29,10 @@
 			<p:column headerText="name" style="font-weight: bold;">
 				<h:outputText value="#{todo.name}" />
 			</p:column>
-			<p:column headerText="#{bundle.homeDescription">
+			<p:column headerText="#{bundle.homeDescription}">
 				<h:outputText value="#{todo.description}" />
 			</p:column>
-			<p:column headerText="#{bundle.homeTags">
+			<p:column headerText="#{bundle.homeTags}">
 				<p:dataList value="#{todo.tagsAsList}" var="tag"
 					rendered="#{! empty todo.tags}" itemType="none" >
 					<h:outputText value="#{tag.name}" />
