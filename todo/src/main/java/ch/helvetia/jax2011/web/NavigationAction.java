@@ -35,6 +35,11 @@ public class NavigationAction implements Serializable {
 		return "createTag.xhtml?faces-redirect=true";
 	}
 
+	public String goToRegisterUser() {
+		endConversation();
+		return "registerUser.xhtml?faces-redirect=true";
+	}
+
 	public void logout() {
 		endConversation();
 		identity.logout();

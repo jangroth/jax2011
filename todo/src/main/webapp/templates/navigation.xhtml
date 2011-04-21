@@ -11,12 +11,14 @@
 		<p:toolbar>
 			<p:toolbarGroup align="left">
 				<p:commandButton action="#{navigationAction.goToHome}"
-					value="#{bundle.homePage}" immediate="true" />
+					value="#{bundle.homePage}" rendered="#{identity.loggedIn}" />
 				<p:commandButton action="#{navigationAction.goToCreateTodo}"
-					value="New Todo" immediate="true" />
+					value="#{bundle.newTodo}" immediate="true" rendered="#{identity.loggedIn}" />
 				<p:commandButton action="#{navigationAction.goToCreateTag}"
-					value="New Tag" immediate="true" />
-				<p:commandButton action="#{navigationAction.logout}" value="Logout"
+					value="#{bundle.newTag}" immediate="true" rendered="#{identity.loggedIn}" />
+				<p:commandButton action="#{navigationAction.goToRegisterUser}"
+					value="#{bundle.registerUser}" immediate="true" />
+				<p:commandButton action="#{navigationAction.logout}" value="#{bundle.logout}"
 					immediate="true" rendered="#{identity.loggedIn}" />
 			</p:toolbarGroup>
 			<p:toolbarGroup align="right">
