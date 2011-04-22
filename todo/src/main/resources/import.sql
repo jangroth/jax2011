@@ -1,4 +1,4 @@
-# import script
+/* import script */
 insert into TODO ("ID", "NAME", "DESCRIPTION", "DUEDATE", "DONE") values (10000, 'prepare application', 'many more usecases are needed', DATE '2012-12-31', false);
 insert into TODO ("ID", "NAME", "DESCRIPTION", "DUEDATE", "DONE") values (10001, 'document code', 'this is alway important', DATE '2011-12-31', false);
 insert into TODO ("ID", "NAME", "DESCRIPTION", "DUEDATE", "DONE") values (10002, 'call mum', 'dont forget her birthday this year', DATE '2012-08-25', false);
