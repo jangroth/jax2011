@@ -30,6 +30,11 @@ public class NavigationAction implements Serializable {
 		return "createTodo.xhtml?faces-redirect=true";
 	}
 
+	public String goToEditTodo() {
+		endConversation();
+		return "editTodo.xhtml?faces-redirect=true&IncludeViewParams=true";
+	}
+
 	public String goToCreateTag() {
 		endConversation();
 		return "createTag.xhtml?faces-redirect=true";

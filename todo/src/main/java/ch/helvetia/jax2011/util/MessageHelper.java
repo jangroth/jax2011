@@ -56,8 +56,8 @@ public class MessageHelper {
 	 *            Parameters to go into the message
 	 * @return {@link FacesMessage} initialised with the given information
 	 */
-	public static FacesMessage createMessage(FacesMessage.Severity severity,
-			String messageKey, Object... params) {
+	public static FacesMessage createMessageFromKey(
+			FacesMessage.Severity severity, String messageKey, Object... params) {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ResourceBundle bundle = getResourceBundle(ctx);
 		String msgPattern = bundle.getString(messageKey);
@@ -71,7 +71,8 @@ public class MessageHelper {
 
 		FacesMessage facesMsg = new FacesMessage();
 		facesMsg.setSeverity(severity);
-		facesMsg.setSummary(msg);
+		facesMsg.setSummary("");
+		facesMsg.setDetail(msg);
 
 		return facesMsg;
 	}

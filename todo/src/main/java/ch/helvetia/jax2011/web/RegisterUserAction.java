@@ -42,12 +42,12 @@ public class RegisterUserAction implements Serializable {
 		String result = null;
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (!passwordsEqual()) {
-			facesContext.addMessage(null, MessageHelper.createMessage(
+			facesContext.addMessage(null, MessageHelper.createMessageFromKey(
 					FacesMessage.SEVERITY_WARN, "passwordsDontMatch"));
 		} else {
 			task.saveUser();
 			identity.silentLogin(task.getUser());
-			facesContext.addMessage(null, MessageHelper.createMessage(
+			facesContext.addMessage(null, MessageHelper.createMessageFromKey(
 					FacesMessage.SEVERITY_INFO, "loginWelcome", task.getUser()
 							.getName()));
 			facesContext.getExternalContext().getFlash().setKeepMessages(true);

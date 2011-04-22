@@ -7,40 +7,45 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import ch.helvetia.jax2011.boundary.CreateTodoTask;
+import ch.helvetia.jax2011.boundary.EditTodoTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.Todo;
 import ch.helvetia.jax2011.util.MessageHelper;
 
 /**
- * Action to create a new todo-item
+ * Action to edit an existing todo-item.
  */
 @Action
-public class CreateTodoAction implements Serializable {
+public class EditTodoAction implements Serializable {
 
 	@Inject
 	private Conversation conversation;
 
 	@Inject
-	private CreateTodoTask task;
+	private EditTodoTask task;
+
+	private Long todoId;
 
 	// TODO: introduce seam3 view-action
 	public void init() {
 		if (!FacesContext.getCurrentInstance().isPostback()
 				&& conversation.isTransient()) {
-			task.createTodo();
+			task.loadTodo(todoId);
 		}
 	}
 
-	public String createTodo() {
-		task.saveTodo();
+	public String updateTodo() {
+		task.updateTodo();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		facesContext.addMessage(null, MessageHelper.createMessageFromKey(
-				FacesMessage.SEVERITY_INFO, "newTodoCreated", task.getTodo()
+				FacesMessage.SEVERITY_INFO, "todoEdited", task.getTodo()
 						.getName()));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
-		// TODO: investigate if this can be handled in a seam 3 way
-		return "/attachTags.xhtml?faces-redirect=true";
+		return "/home.xhtml?faces-redirect=true";
+	}
+
+	public String cancel() {
+		return "/home.xhtml?faces-redirect=true";
 	}
 
 	//
@@ -49,6 +54,14 @@ public class CreateTodoAction implements Serializable {
 
 	public Todo getTodo() {
 		return task.getTodo();
+	}
+
+	public Long getTodoId() {
+		return todoId;
+	}
+
+	public void setTodoId(Long todoId) {
+		this.todoId = todoId;
 	}
 
 }
