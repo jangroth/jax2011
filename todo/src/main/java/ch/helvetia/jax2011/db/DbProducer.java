@@ -10,9 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
-/**
- * Producer for EntityManager
- */
 @ApplicationScoped
 // TODO: use Seam 3 persistence
 public class DbProducer implements Serializable {
@@ -26,8 +23,10 @@ public class DbProducer implements Serializable {
 	public EntityManager getEntityManager() {
 		EntityManager em = emf.createEntityManager();
 
-		ManagedPersistenceContextProxyHandler handler = new ManagedPersistenceContextProxyHandler(em);
-		em = (EntityManager) Proxy.newProxyInstance(EntityManager.class.getClassLoader(),
+		ManagedPersistenceContextProxyHandler handler = new ManagedPersistenceContextProxyHandler(
+				em);
+		em = (EntityManager) Proxy.newProxyInstance(
+				EntityManager.class.getClassLoader(),
 				new Class[] { EntityManager.class }, handler);
 
 		return em;
