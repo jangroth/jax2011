@@ -57,21 +57,21 @@ public class MessageHelper {
 	 * @return {@link FacesMessage} initialised with the given information
 	 */
 	public static FacesMessage createMessage(FacesMessage.Severity severity,
-			String messageKey, Object... param) {
+			String messageKey, Object... params) {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ResourceBundle bundle = getResourceBundle(ctx);
 		String msgPattern = bundle.getString(messageKey);
-		String msg = msgPattern;
+		String msg;
 
-		if (param != null) {
-			Object[] params = { param };
+		if (params.length > 0) {
 			msg = MessageFormat.format(msgPattern, params);
+		} else {
+			msg = msgPattern;
 		}
 
 		FacesMessage facesMsg = new FacesMessage();
 		facesMsg.setSeverity(severity);
 		facesMsg.setSummary(msg);
-		facesMsg.setDetail(msg);
 
 		return facesMsg;
 	}

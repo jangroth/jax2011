@@ -38,11 +38,13 @@ public class LocaleSelector implements Serializable {
 	}
 
 	public String getLanguage() {
-		return getLocale().getLanguage();
+		return getLocale().toString();
 	}
 
-	public void setLanguage(String language) {
-		setLocale(new Locale(language));
+	public void setLanguage(String isoCode) {
+		String language = isoCode.substring(0, 2);
+		String country = isoCode.substring(3, 5);
+		setLocale(new Locale(language, country));
 	}
 
 }
