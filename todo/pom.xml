@@ -99,6 +99,12 @@
 			<groupId>org.jboss.seam.validation</groupId>
 			<artifactId>seam-validation</artifactId>
 			<version>3.0.0.Final</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>validation-api</artifactId>
+					<groupId>javax.validation</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.seam.config</groupId>
