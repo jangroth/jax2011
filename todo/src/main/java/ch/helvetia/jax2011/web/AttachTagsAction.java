@@ -56,6 +56,10 @@ public class AttachTagsAction implements Serializable {
 		return result;
 	}
 
+	//
+	// getter & setter
+	//
+
 	public Todo getTodo() {
 		return task.getTodo();
 	}

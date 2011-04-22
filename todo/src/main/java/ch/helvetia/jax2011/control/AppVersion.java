@@ -16,10 +16,14 @@ public class AppVersion {
 	// Todo use Seam Solder
 	@PostConstruct
 	public void init() {
-		ResourceBundle bundle = ResourceBundle.getBundle("version", new Locale("en"), Thread.currentThread()
-				.getContextClassLoader());
+		ResourceBundle bundle = ResourceBundle.getBundle("version", new Locale(
+				"en"), Thread.currentThread().getContextClassLoader());
 		version = bundle.getString("version");
 	}
+
+	//
+	// getter & setter
+	//
 
 	public String getVersion() {
 		return version;

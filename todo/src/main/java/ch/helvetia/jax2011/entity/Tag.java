@@ -26,6 +26,10 @@ public class Tag implements Comparable<Tag> {
 
 	private String description;
 
+	//
+	// getter & setter
+	//
+
 	public Long getId() {
 		return id;
 	}

@@ -18,6 +18,10 @@ public class LocaleSelector implements Serializable {
 		return locale;
 	}
 
+	//
+	// getter & setter
+	//
+
 	public void setLocale(Locale locale) {
 		this.locale = locale;
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);

@@ -18,6 +18,10 @@ public class Credentials {
 	@NotEmpty
 	private String password;
 
+	//
+	// getter & setter
+	//
+
 	public String getUsername() {
 		return username;
 	}

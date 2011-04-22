@@ -53,6 +53,10 @@ public class ListTodosTask implements Serializable {
 		conversation.end();
 	}
 
+	//
+	// getter & setter
+	//
+
 	public List<Todo> getTodos() {
 		return todos;
 	}

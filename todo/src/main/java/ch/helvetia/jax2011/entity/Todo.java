@@ -50,6 +50,10 @@ public class Todo {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Tag> tags = new TreeSet<Tag>();
 
+	//
+	// getter & setter
+	//
+
 	public Long getId() {
 		return id;
 	}

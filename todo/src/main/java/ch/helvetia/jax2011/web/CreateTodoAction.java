@@ -43,6 +43,10 @@ public class CreateTodoAction implements Serializable {
 		return "/attachTags.xhtml?faces-redirect=true";
 	}
 
+	//
+	// getter & setter
+	//
+
 	public Todo getTodo() {
 		return task.getTodo();
 	}

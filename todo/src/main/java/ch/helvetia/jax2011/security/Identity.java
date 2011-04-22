@@ -68,6 +68,10 @@ public class Identity implements Serializable {
 		}
 	}
 
+	//
+	// getter & setter
+	//
+
 	public User getUser() {
 		return user;
 	}
