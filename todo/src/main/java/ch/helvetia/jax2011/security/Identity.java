@@ -8,6 +8,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ch.helvetia.jax2011.control.UserService;
+import ch.helvetia.jax2011.entity.User;
 import ch.helvetia.jax2011.error.TodoSecurityException;
 
 /**
@@ -20,16 +22,25 @@ public class Identity implements Serializable {
 	@Inject
 	private Credentials credentials;
 
+	@Inject
+	private UserService userService;
+
 	private Set<String> activeRoles = new HashSet<String>();
 
 	private User user;
 
 	public void login() {
-		if ("test".equals(credentials.getUsername())
-				&& "test".equals(credentials.getPassword())) {
-			user = new User("test");
+		User newUser = userService.authenticate(credentials.getUsername(),
+				credentials.getPassword());
+		if (newUser != null) {
+			user = newUser;
 			activeRoles.add("admin");
 		}
+	}
+
+	public void silentLogin(User newUser) {
+		user = newUser;
+		activeRoles.add("admin");
 	}
 
 	public void logout() {

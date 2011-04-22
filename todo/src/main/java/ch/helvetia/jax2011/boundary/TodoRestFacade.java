@@ -78,7 +78,7 @@ public class TodoRestFacade {
 	@Path("newTodo")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void newTodo(Todo todo) {
-		// Use Seam REST for validation
+		// TODO: Use Seam REST for validation
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);

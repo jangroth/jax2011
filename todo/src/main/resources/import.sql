@@ -16,4 +16,4 @@ insert into TODO_TAG ("TODO_ID", "TAGS_ID") values (10002, 20001);
 insert into TODO_TAG ("TODO_ID", "TAGS_ID") values (10003, 20003);
 insert into TODO_TAG ("TODO_ID", "TAGS_ID") values (10003, 20002);
 
-insert into USER ("ID", "NAME", "PASSWORD") values 30000, 'test', 'test');
+insert into USER ("ID", "NAME", "PASSWORD") values (30000, 'test', 'test');

@@ -11,12 +11,12 @@
 	<ui:param name="title" value="login" />
 	<ui:define name="content">
 		<h:panelGrid columns="4">
-			<h:outputLabel for="username">Username:</h:outputLabel>
-			<h:inputText id="username" value="#{credentials.username}" />
+			<h:outputLabel for="username">#{bundle.username}:</h:outputLabel>
+			<h:inputText id="username" value="#{credentials.username}" title="#{bundle.passwordHelp}" />
 			<p:watermark for="username" value="username..." />
 			<p:message for="username" />
-			<h:outputLabel for="password">Password:</h:outputLabel>
-			<h:inputSecret id="password" value="#{credentials.password}" />
+			<h:outputLabel for="password">#{bundle.password}:</h:outputLabel>
+			<h:inputSecret id="password" value="#{credentials.password}" title="#{bundle.passwordHelp}" />
 			<p:watermark for="password" value="password..." />
 			<p:message for="password" />
 		</h:panelGrid>
