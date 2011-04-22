@@ -19,7 +19,6 @@ public class LocaleSelector implements Serializable {
 
 	public Locale getLocale() {
 		if (locale == null) {
-			System.out.println("englisch");
 			locale = Locale.ENGLISH;
 		}
 		return locale;

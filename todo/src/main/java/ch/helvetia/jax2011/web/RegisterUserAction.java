@@ -11,6 +11,7 @@ import ch.helvetia.jax2011.boundary.RegisterUserTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.User;
 import ch.helvetia.jax2011.security.Identity;
+import ch.helvetia.jax2011.util.MessageHelper;
 
 /**
  * Action to regiser a new user.
@@ -41,15 +42,14 @@ public class RegisterUserAction implements Serializable {
 		String result = null;
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (!passwordsEqual()) {
-			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_WARN, "user registration error",
-					"Passwords don't match"));
+			facesContext.addMessage(null, MessageHelper.createMessage(
+					FacesMessage.SEVERITY_WARN, "passwordsDontMatch"));
 		} else {
 			task.saveUser();
 			identity.silentLogin(task.getUser());
-			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "user registration", "Welcome "
-							+ task.getUser().getName() + "!"));
+			facesContext.addMessage(null, MessageHelper.createMessage(
+					FacesMessage.SEVERITY_INFO, "loginWelcome", task.getUser()
+							.getName()));
 			facesContext.getExternalContext().getFlash().setKeepMessages(true);
 			result = "/home.xhtml?faces-redirect=true";
 		}

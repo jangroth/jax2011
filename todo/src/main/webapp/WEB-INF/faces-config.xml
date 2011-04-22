@@ -7,6 +7,9 @@
 			<base-name>messages</base-name>
 			<var>bundle</var>
 		</resource-bundle>
+		<message-bundle>
+			messages
+		</message-bundle>
 		<locale-config>
 			<default-locale>en</default-locale>
 			<supported-locale>en</supported-locale>

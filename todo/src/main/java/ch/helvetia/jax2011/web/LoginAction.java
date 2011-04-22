@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.security.Credentials;
 import ch.helvetia.jax2011.security.Identity;
+import ch.helvetia.jax2011.util.MessageHelper;
 
 /**
  * Action to login
@@ -27,16 +28,15 @@ public class LoginAction implements Serializable {
 		identity.login();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (identity.isLoggedIn()) {
-			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "login successful", "welcome "
-							+ credentials.getUsername()));
+			facesContext.addMessage(null, MessageHelper.createMessage(
+					FacesMessage.SEVERITY_INFO, "loginWelcome",
+					credentials.getUsername()));
 			facesContext.getExternalContext().getFlash().setKeepMessages(true);
 			return "home.xhtml?faces-redirect=true";
 		} else {
-			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Login failed",
-					"login failed for username '" + credentials.getUsername()
-							+ "'."));
+			facesContext.addMessage(null, MessageHelper.createMessage(
+					FacesMessage.SEVERITY_ERROR, "loginFailed",
+					credentials.getUsername()));
 			return null;
 		}
 	}

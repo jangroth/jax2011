@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import ch.helvetia.jax2011.boundary.CreateTodoTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.Todo;
+import ch.helvetia.jax2011.util.MessageHelper;
 
 /**
  * Action to create a new todo-item
@@ -34,10 +35,9 @@ public class CreateTodoAction implements Serializable {
 	public String createTodo() {
 		task.saveTodo();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		facesContext.addMessage(null, new FacesMessage(
-				FacesMessage.SEVERITY_INFO, "Todo created", "Todo '"
-						+ task.getTodo().getName()
-						+ "' sucessfully created, please attach tags now."));
+		facesContext.addMessage(null, MessageHelper.createMessage(
+				FacesMessage.SEVERITY_INFO, "newTodoCreated", task.getTodo()
+						.getName()));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
 		// TODO: investigate if this can be handled in a seam 3 way
 		return "/attachTags.xhtml?faces-redirect=true";
