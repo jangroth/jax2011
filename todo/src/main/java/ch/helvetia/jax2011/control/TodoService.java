@@ -40,6 +40,10 @@ public class TodoService {
 		return result;
 	}
 
+	public Todo loadTodo(Long id) {
+		return em.find(Todo.class, id);
+	}
+
 	public void saveTodo(Todo todo) {
 		// TODO: Use Seam REST for validation
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

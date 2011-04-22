@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import ch.helvetia.jax2011.control.UserService;
 import ch.helvetia.jax2011.entity.User;
@@ -15,6 +16,7 @@ import ch.helvetia.jax2011.error.TodoSecurityException;
  * Bean for authentication and authorization
  */
 @SessionScoped
+@Named("jaxIdentity")
 public class Identity implements Serializable {
 
 	@Inject
