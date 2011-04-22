@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * Represents the credentials the current user will use to authenticate
  */
-@Named
+@Named("jaxCredentials")
 @RequestScoped
 public class Credentials {
 
