@@ -5,17 +5,28 @@ import java.util.Locale;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
+import javax.inject.Named;
 
+/**
+ * Bean to support language switch.
+ */
 @SessionScoped
+@Named
 public class LocaleSelector implements Serializable {
 
 	private Locale locale;
 
 	public Locale getLocale() {
 		if (locale == null) {
+			System.out.println("englisch");
 			locale = Locale.ENGLISH;
 		}
 		return locale;
+	}
+
+	public void processValueChanged(ValueChangeEvent e) {
+		setLanguage((String) e.getNewValue());
 	}
 
 	//

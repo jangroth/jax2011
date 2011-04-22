@@ -4,55 +4,58 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet name="main.css" library="css" />
-	<title>TodoApp - JAX 2011</title>
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-</h:head>
+<f:view locale="#{localeSelector.locale}">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<h:outputStylesheet name="main.css" library="css" />
+		<title>TodoApp - JAX 2011</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	</h:head>
 
-<h:body>
+	<h:body>
 
-	<h:panelGroup id="wrapper" layout="block">
+		<h:panelGroup id="wrapper" layout="block">
 
-		<div id="header">
-			<h:form id="headerForm">
-				<p:commandLink action="#{navigationAction.goToHome}">
-					<h:graphicImage library="images" style="float:left;border:none"
-						name="header_left.png" />
-				</p:commandLink>
-				<h:graphicImage library="images" style="float:right;"
-					name="header_right.png" />
+			<div id="header">
+				<h:form id="headerForm">
+					<p:commandLink action="#{navigationAction.goToHome}">
+						<h:graphicImage library="images" style="float:left;border:none"
+							name="header_left.png" />
+					</p:commandLink>
+					<h:graphicImage library="images" style="float:right;"
+						name="header_right.png" />
+				</h:form>
+			</div>
+
+			<div id="navigation">
+				<ui:include src="/templates/navigation.xhtml" />
+			</div>
+
+			<h:form id="contentForm">
+				<div id="leftcolumn">
+					<ui:insert name="leftcontent" />
+				</div>
+				<div id="rightcolumn">
+					<p:breadCrumb>
+						<p:menuitem value="home" action="#{navigationAction.goToHome}"
+							immediate="true" />
+						<p:menuitem value="#{title}" url="#" />
+					</p:breadCrumb>
+					<br />
+					<ui:insert name="content" />
+					<p:growl id="growl" showDetail="true" globalOnly="true"
+						sticky="false" life="5000" />
+				</div>
 			</h:form>
-		</div>
 
-		<div id="navigation">
-			<ui:include src="/templates/navigation.xhtml" />
-		</div>
-
-		<h:form id="contentForm">
-			<div id="leftcolumn">
-				<ui:insert name="leftcontent" />
+			<div id="footer">
+				<h:outputText value="Version #{appVersion.version}" />
+				<h:outputText value="Version #{facesContext.viewRoot.locale}" />
 			</div>
-			<div id="rightcolumn">
-				<p:breadCrumb>
-					<p:menuitem value="home" action="#{navigationAction.goToHome}"
-						immediate="true" />
-					<p:menuitem value="#{title}" url="#" />
-				</p:breadCrumb>
-				<br />
-				<ui:insert name="content" />
-				<p:growl id="growl" showDetail="true" globalOnly="true"
-					sticky="false" life="5000" />
-			</div>
-		</h:form>
 
-		<div id="footer">
-			<h:outputText value="Version #{appVersion.version}" />
-		</div>
+		</h:panelGroup>
 
-	</h:panelGroup>
-
-</h:body>
+	</h:body>
+</f:view>
 </html>

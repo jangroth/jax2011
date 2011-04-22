@@ -23,7 +23,7 @@
 			</p:toolbarGroup>
 			<p:toolbarGroup align="right">
 				<h:selectOneMenu value="#{localeSelector.language}"
-					valueChangeListener="#{localeSelector.processValueChange}"
+					valueChangeListener="#{localeSelector.processValueChanged}"
 					onchange="submit()">
 					<f:selectItem itemLabel="english" itemValue="en" />
 					<f:selectItem itemLabel="schwitzerdütsch" itemValue="ch" />
