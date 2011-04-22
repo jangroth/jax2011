@@ -69,6 +69,11 @@ public class ListTodosAction implements Serializable {
 		tagCloudModel = result;
 	}
 
+	public String editTodo(Todo todo) {
+		task.finish();
+		return "/editTodo.xhtml?faces-redirect=true&id=" + todo.getId();
+	}
+
 	//
 	// getter & setter
 	//
