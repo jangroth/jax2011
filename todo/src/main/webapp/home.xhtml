@@ -16,7 +16,7 @@
 		<f:viewParam name="filterTagId" value="#{listTodosAction.filterTagId}" />
 		<f:viewParam name="filterDate" value="#{listTodosAction.filterDate}" />
 	</f:metadata>
-	<ui:param name="title" value="home" />
+	<ui:param name="title" value="#{bundle.home}" />
 	<ui:define name="leftcontent">
 		<ui:include src="/templates/sidebar.xhtml" />
 	</ui:define>
@@ -32,7 +32,7 @@
 			<p:column headerText="#{bundle.homeStatus}">
 				<p:selectBooleanCheckbox value="#{todo.done}" />
 			</p:column>
-			<p:column headerText="name" style="font-weight: bold;">
+			<p:column headerText="#{bundle.homeName}" style="font-weight: bold;">
 				<h:outputText value="#{todo.name}" />
 			</p:column>
 			<p:column headerText="#{bundle.homeDescription}">

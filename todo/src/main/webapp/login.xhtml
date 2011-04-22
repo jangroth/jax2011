@@ -8,7 +8,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-	<ui:param name="title" value="login" />
+	<ui:param name="title" value="#{bundle.login}" />
 	<ui:define name="content">
 		<h:panelGrid columns="4">
 			<h:outputLabel for="username">#{bundle.username}:</h:outputLabel>
@@ -20,7 +20,7 @@
 			<p:watermark for="password" value="password..." />
 			<p:message for="password" />
 		</h:panelGrid>
-		<p:commandButton value="Login" action="#{loginAction.login}"
+		<p:commandButton value="#{bundle.login}" action="#{loginAction.login}"
 			ajax="false" />
 	</ui:define>
 </ui:composition>

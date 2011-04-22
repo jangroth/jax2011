@@ -28,14 +28,14 @@ public class LoginAction implements Serializable {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (identity.isLoggedIn()) {
 			facesContext.addMessage(null, new FacesMessage(
-					FacesMessage.SEVERITY_INFO, "Login Successful", "Welcome "
+					FacesMessage.SEVERITY_INFO, "login successful", "welcome "
 							+ credentials.getUsername()));
 			facesContext.getExternalContext().getFlash().setKeepMessages(true);
 			return "home.xhtml?faces-redirect=true";
 		} else {
 			facesContext.addMessage(null, new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Login failed",
-					"Login failed for username '" + credentials.getUsername()
+					"login failed for username '" + credentials.getUsername()
 							+ "'."));
 			return null;
 		}
