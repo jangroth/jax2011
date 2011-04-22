@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -41,11 +42,15 @@ public class TodoService {
 	}
 
 	public Todo loadTodo(Long id) {
-		return em.find(Todo.class, id);
+		Todo todo = em.find(Todo.class, id);
+		if (todo == null) {
+			throw new EntityNotFoundException();
+		}
+		return todo;
 	}
 
 	public void saveTodo(Todo todo) {
-		// TODO: Use Seam REST for validation
+		// TODO: Use Seam Validation for validation
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
@@ -56,7 +61,7 @@ public class TodoService {
 	}
 
 	public void updateTodo(Todo todo) {
-		// TODO: Use Seam REST for validation
+		// TODO: Use Seam Validation for validation
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);

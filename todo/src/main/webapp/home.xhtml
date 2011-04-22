@@ -45,7 +45,9 @@
 				</p:dataList>
 			</p:column>
 			<p:column>
-				hier fehlt der link
+				<p:commandLink ajax="false" immediate="true" action="#{listTodosAction.editTodo(todo)}">
+					<h:outputText value="#{bundle.edit}" />
+				</p:commandLink>
 			</p:column>
 		</p:dataTable>
 	</ui:define>

@@ -9,7 +9,7 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 	<f:metadata>
-		<f:viewParam name="id" value="#{editTodoAction.todoId}" />
+		<f:viewParam name="id" value="#{editTodoAction.todoId}" required="true"/>
 		<f:event type="javax.faces.event.PreRenderViewEvent"
 			listener="#{editTodoAction.init}" />
 	</f:metadata>

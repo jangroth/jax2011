@@ -41,10 +41,12 @@ public class EditTodoAction implements Serializable {
 				FacesMessage.SEVERITY_INFO, "todoEdited", task.getTodo()
 						.getName()));
 		facesContext.getExternalContext().getFlash().setKeepMessages(true);
+		task.finish();
 		return "/home.xhtml?faces-redirect=true";
 	}
 
 	public String cancel() {
+		task.finish();
 		return "/home.xhtml?faces-redirect=true";
 	}
 
