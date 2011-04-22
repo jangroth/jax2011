@@ -18,26 +18,24 @@ body {
 	width: 900px;
 	float: left;
 	padding: 10px;
-	border: 1px solid #ccc;
-	height: 140px;
-	margin: 10px 0px 5px 0px;
-	background: #cdcdcd;
+	border: 0px;
+	height: 130px;
+	margin: 5px 0px 5px 0px;
+	background: #cccccc;
 }
 
 #navigation {
 	float: left;
-	width: 900px;
-	color: #333;
-	padding: 10px;
-	border: 1px solid #ccc;
+	width: 922px;
+	padding: 0px;
+	border: 0px solid #ccc;
 	margin: 0px 0px 5px 0px;
-	background: #BD9C8C;
 }
 
 #leftcolumn {
 	color: #333;
 	border: 1px solid #ccc;
-	background: #E7DBD5;
+	background: #eeeeee;
 	margin: 0px 5px 5px 0px;
 	padding: 10px;
 	height: 450px;
@@ -49,7 +47,7 @@ body {
 	float: right;
 	color: #333;
 	border: 1px solid #ccc;
-	background: #F2F2E6;
+	background: #eeeeee;
 	margin: 0px 0px 5px 0px;
 	padding: 10px;
 	height: 450px;
@@ -60,10 +58,8 @@ body {
 #footer {
 	width: 900px;
 	clear: both;
-	color: #333;
-	border: 1px solid #ccc;
-	background: #cdcdcd;
-	margin: 0px 0px 10px 0px;
+	border: 0px;
+	background: #cccccc;
 	padding: 10px;
 	margin: 0px 0px 10px 0px;
 }
