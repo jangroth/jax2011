@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Todo;
+import ch.helvetia.jax2011.util.ConversationLogger;
 
 /**
  * User-Task to edit an existing todo.
@@ -26,6 +27,9 @@ public class EditTodoTask implements Serializable {
 	@Inject
 	private TodoService todoService;
 
+	@Inject
+	private ConversationLogger conversationLog;
+
 	private Todo todo;
 
 	/**
@@ -33,6 +37,7 @@ public class EditTodoTask implements Serializable {
 	 */
 	public void loadTodo(Long id) {
 		conversation.begin();
+		conversationLog.started(conversation.getId());
 		todo = todoService.loadTodo(id);
 	}
 
@@ -43,6 +48,7 @@ public class EditTodoTask implements Serializable {
 
 	public void finish() {
 		conversation.end();
+		conversationLog.stopped();
 	}
 
 	//
