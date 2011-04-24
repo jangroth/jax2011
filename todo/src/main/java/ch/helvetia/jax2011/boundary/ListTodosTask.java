@@ -10,6 +10,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
+import org.jboss.seam.validation.AutoValidating;
+
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
 import ch.helvetia.jax2011.control.TagService;
 import ch.helvetia.jax2011.control.TodoService;
@@ -21,6 +23,7 @@ import ch.helvetia.jax2011.entity.Todo;
 @UserTask
 @Stateful
 @TransactionAttribute(TransactionAttributeType.NEVER)
+@AutoValidating
 public class ListTodosTask implements Serializable {
 
 	@Inject

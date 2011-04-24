@@ -9,11 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import org.jboss.logging.Logger;
+import org.jboss.seam.solder.logging.Category;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
@@ -30,8 +29,12 @@ public class TodoService {
 	@TodoDb
 	private EntityManager em;
 
-	// todo: use Solder for logging
-	private final Logger logger = Logger.getLogger(TodoService.class);
+	@Inject
+	@Category("info")
+	private Logger logger;
+
+	@Inject
+	private Validator validator;
 
 	public Todo createNewTodo() {
 		Todo result = new Todo();
@@ -50,9 +53,6 @@ public class TodoService {
 	}
 
 	public void saveTodo(Todo todo) {
-		// TODO: Use Seam Validation for validation
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
 		if (violations.size() > 0) {
 			throw new ValidationException("Validation failed");
@@ -62,8 +62,6 @@ public class TodoService {
 
 	public void updateTodo(Todo todo) {
 		// TODO: Use Seam Validation for validation
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
 		if (violations.size() > 0) {
 			throw new ValidationException("Validation failed");
@@ -85,9 +83,8 @@ public class TodoService {
 			query.setParameter("filterDate", filterDate);
 		}
 		List<Todo> result = query.getResultList();
-		logger.info("found " + result.size() + " todos for tag: " + filterTagId
-				+ " and date: " + filterDate);
+		logger.infov("found {0} todos for tag: {1} and date: {2}!",
+				result.size(), filterTagId, filterDate);
 		return result;
 	}
-
 }
