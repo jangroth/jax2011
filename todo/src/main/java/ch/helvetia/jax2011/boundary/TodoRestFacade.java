@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.jboss.seam.conversation.spi.SeamConversationContext;
+import org.jboss.seam.rest.validation.ValidateRequest;
 
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Todo;
@@ -47,7 +48,7 @@ public class TodoRestFacade {
 
 	@PersistenceUnit(unitName = "todoApp")
 	private EntityManagerFactory emf;
-	
+
 	@Inject
 	HttpServletRequest request;
 
@@ -79,33 +80,35 @@ public class TodoRestFacade {
 		// List<Todo> todos = query.getResultList();
 
 		conversationContext.associate(request).activate(null);
-		
+
 		List<Todo> todos = todoService.findTodos(new Date(), null);
 		ListResponse response = new ListResponse();
 		response.setTodos(todos);
-		
+
 		conversationContext.invalidate().deactivate().dissociate(request);
-		
+
 		return response;
 	}
 
 	@POST
 	@Path("newTodo")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@ValidateRequest
 	public void newTodo(Todo todo) {
 		conversationContext.associate(request).activate(null);
-		
+
 		// TODO: Use Seam REST for validation
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
-		if (violations.size() > 0) {
-			throw new ValidationException("Validation failed");
-		}
+		// ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		// Validator validator = factory.getValidator();
+		// Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
+		// if (violations.size() > 0) {
+		// throw new ValidationException("Validation failed");
+		// }
+
 		// EntityManager em = emf.createEntityManager();
 		// em.persist(todo);
 		todoService.saveTodo(todo);
-		
+
 		conversationContext.invalidate().deactivate().dissociate(request);
 	}
 }

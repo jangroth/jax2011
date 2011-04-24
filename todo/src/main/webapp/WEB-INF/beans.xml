@@ -4,6 +4,7 @@
 
 	<interceptors>
 		<class>org.jboss.seam.validation.ValidationInterceptor</class>
+		<class>org.jboss.seam.rest.validation.ValidationInterceptor</class>
 	</interceptors>
 </beans>
 	
