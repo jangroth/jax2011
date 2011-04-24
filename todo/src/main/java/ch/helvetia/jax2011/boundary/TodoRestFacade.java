@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -22,6 +23,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.jboss.seam.conversation.spi.SeamConversationContext;
 
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Todo;
@@ -44,6 +47,12 @@ public class TodoRestFacade {
 
 	@PersistenceUnit(unitName = "todoApp")
 	private EntityManagerFactory emf;
+	
+	@Inject
+	HttpServletRequest request;
+
+	@Inject
+	SeamConversationContext<HttpServletRequest> conversationContext;
 
 	@XmlRootElement
 	private static class ListResponse {
@@ -63,14 +72,20 @@ public class TodoRestFacade {
 	@GET
 	@Path("listTodos")
 	public ListResponse listTodos() {
-		EntityManager em = emf.createEntityManager();
-		TypedQuery<Todo> query = em.createNamedQuery("findTodosByDate",
-				Todo.class);
-		query.setParameter("filterDate", new Date());
-		List<Todo> todos = query.getResultList();
+		// EntityManager em = emf.createEntityManager();
+		// TypedQuery<Todo> query = em.createNamedQuery("findTodosByDate",
+		// Todo.class);
+		// query.setParameter("filterDate", new Date());
+		// List<Todo> todos = query.getResultList();
 
+		conversationContext.associate(request).activate(null);
+		
+		List<Todo> todos = todoService.findTodos(new Date(), null);
 		ListResponse response = new ListResponse();
 		response.setTodos(todos);
+		
+		conversationContext.invalidate().deactivate().dissociate(request);
+		
 		return response;
 	}
 
@@ -78,6 +93,8 @@ public class TodoRestFacade {
 	@Path("newTodo")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void newTodo(Todo todo) {
+		conversationContext.associate(request).activate(null);
+		
 		// TODO: Use Seam REST for validation
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
@@ -85,7 +102,10 @@ public class TodoRestFacade {
 		if (violations.size() > 0) {
 			throw new ValidationException("Validation failed");
 		}
-		EntityManager em = emf.createEntityManager();
-		em.persist(todo);
+		// EntityManager em = emf.createEntityManager();
+		// em.persist(todo);
+		todoService.saveTodo(todo);
+		
+		conversationContext.invalidate().deactivate().dissociate(request);
 	}
 }
