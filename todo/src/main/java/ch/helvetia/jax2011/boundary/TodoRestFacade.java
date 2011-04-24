@@ -29,6 +29,9 @@ import org.jboss.seam.rest.validation.ValidateRequest;
 
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Todo;
+import ch.helvetia.jax2011.error.RestAnnotationException;
+import ch.helvetia.jax2011.error.RestCatchException;
+import ch.helvetia.jax2011.error.RestXmlException;
 import ch.helvetia.jax2011.error.ValidationException;
 
 /**
@@ -111,4 +114,23 @@ public class TodoRestFacade {
 
 		conversationContext.invalidate().deactivate().dissociate(request);
 	}
+
+	@GET
+	@Path("testCatchException")
+	public String testCatchException() {
+		throw new RestCatchException();
+	}
+
+	@GET
+	@Path("testAnnotationException")
+	public String testAnnotationException() {
+		throw new RestAnnotationException();
+	}
+
+	@GET
+	@Path("testXmlException")
+	public String testXmlException() {
+		throw new RestXmlException();
+	}
+
 }
