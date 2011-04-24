@@ -145,9 +145,16 @@
 			<artifactId>seam-faces</artifactId>
 			<version>3.0.1.Final</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.jboss.seam.persistence</groupId> <artifactId>seam-persistence</artifactId> 
-			<version>3.0.0.Final</version> </dependency> <dependency> <groupId>org.jboss.seam.security</groupId> 
-			<artifactId>seam-security</artifactId> <version>3.0.0.Final</version> </dependency> -->
+		<dependency>
+			<groupId>org.jboss.seam.persistence</groupId>
+			<artifactId>seam-persistence</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.security</groupId>
+			<artifactId>seam-security</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>	
 		<dependency>
 			<groupId>org.jboss.seam.servlet</groupId>
 			<artifactId>seam-servlet</artifactId>
