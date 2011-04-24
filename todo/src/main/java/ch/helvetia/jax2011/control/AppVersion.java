@@ -1,24 +1,27 @@
 package ch.helvetia.jax2011.control;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.jboss.seam.solder.resourceLoader.Resource;
 
 @ApplicationScoped
 @Named
 public class AppVersion {
 
+	@Inject
+	@Resource("version.properties")
+	private Properties properties;
+
 	private String version;
 
-	// Todo use Seam Solder
 	@PostConstruct
 	public void init() {
-		ResourceBundle bundle = ResourceBundle.getBundle("version", new Locale(
-				"en"), Thread.currentThread().getContextClassLoader());
-		version = bundle.getString("version");
+		version = properties.getProperty("version");
 	}
 
 	//
