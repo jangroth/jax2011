@@ -5,8 +5,9 @@ import java.io.Serializable;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
+import org.jboss.seam.security.Identity;
+
 import ch.helvetia.jax2011.common.stereotypes.Action;
-import ch.helvetia.jax2011.security.Identity;
 
 /**
  * Action for navigation - end current conversation and redirect to new view

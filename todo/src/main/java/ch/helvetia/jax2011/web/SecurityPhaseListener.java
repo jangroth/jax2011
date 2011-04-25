@@ -17,6 +17,7 @@ import ch.helvetia.jax2011.security.Identity;
 
 /**
  * Restrict view access
+ * REPLACED with TodoViewConfig
  */
 public class SecurityPhaseListener implements PhaseListener {
 

@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Represents the credentials the current user will use to authenticate
+ * REPLACED with org.jboss.seam.security.Credentials
  */
 @Named("jaxCredentials")
 @RequestScoped

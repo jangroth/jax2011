@@ -11,22 +11,25 @@
 		<p:toolbar>
 			<p:toolbarGroup align="left">
 				<p:commandButton action="#{navigationAction.goToHome}"
-					value="#{bundle.homePage}" rendered="#{jaxIdentity.loggedIn}" />
+					value="#{bundle.homePage}" rendered="#{identity.loggedIn}" />
 				<p:commandButton action="#{navigationAction.goToCreateTodo}"
-					value="#{bundle.newTodo}" immediate="true" rendered="#{jaxIdentity.loggedIn}" />
+					value="#{bundle.newTodo}" immediate="true"
+					rendered="#{identity.loggedIn}" />
 				<p:commandButton action="#{navigationAction.goToCreateTag}"
-					value="#{bundle.newTag}" immediate="true" rendered="#{jaxIdentity.loggedIn}" />
+					value="#{bundle.newTag}" immediate="true"
+					rendered="#{identity.loggedIn}" />
 				<p:commandButton action="#{navigationAction.goToRegisterUser}"
 					value="#{bundle.registerUser}" immediate="true" />
-				<p:commandButton action="#{navigationAction.logout}" value="#{bundle.logout}"
-					immediate="true" rendered="#{jaxIdentity.loggedIn}" />
+				<p:commandButton action="#{navigationAction.logout}"
+					value="#{bundle.logout}" immediate="true"
+					rendered="#{identity.loggedIn}" />
 			</p:toolbarGroup>
 			<p:toolbarGroup align="right">
 				<h:selectOneMenu value="#{localeHelper.language}"
 					valueChangeListener="#{localeHelper.processValueChanged}"
 					onchange="submit()">
-					<f:selectItems value="#{localeHelper.availabeLocales}" var="loc" 
-					itemLabel="#{loc.displayName}" itemValue="#{loc}"/>
+					<f:selectItems value="#{localeHelper.availabeLocales}" var="loc"
+						itemLabel="#{loc.displayName}" itemValue="#{loc}" />
 				</h:selectOneMenu>
 			</p:toolbarGroup>
 		</p:toolbar>

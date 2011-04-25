@@ -2,13 +2,19 @@ package ch.helvetia.jax2011.web;
 
 import java.io.Serializable;
 
+import javax.enterprise.event.Observes;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.jboss.seam.security.Credentials;
+import org.jboss.seam.security.Identity;
+import org.jboss.seam.security.events.LoggedInEvent;
+import org.jboss.seam.security.events.LoginFailedEvent;
+import org.jboss.seam.servlet.event.Initialized;
+import org.jboss.seam.servlet.http.HttpServletRequestContext;
+
 import ch.helvetia.jax2011.common.stereotypes.Action;
-import ch.helvetia.jax2011.security.Credentials;
-import ch.helvetia.jax2011.security.Identity;
 import ch.helvetia.jax2011.util.MessageHelper;
 
 /**

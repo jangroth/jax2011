@@ -15,6 +15,7 @@ import ch.helvetia.jax2011.control.TagService;
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
+import ch.helvetia.jax2011.security.Admin;
 import ch.helvetia.jax2011.security.Identity;
 
 /**
@@ -44,9 +45,8 @@ public class CreateTodoTask implements Serializable {
 	/**
 	 * initialize class-attribute with new todo from service
 	 */
+	@Admin
 	public void createTodo() {
-		// TODO: replace with Seam Security
-		identity.checkRole("admin");
 		todo = todoService.createNewTodo();
 		conversation.begin();
 	}

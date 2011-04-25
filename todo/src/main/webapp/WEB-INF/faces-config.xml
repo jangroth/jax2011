@@ -7,9 +7,7 @@
 			<base-name>messages</base-name>
 			<var>bundle</var>
 		</resource-bundle>
-		<message-bundle>
-			messages
-		</message-bundle>
+		<message-bundle>messages</message-bundle>
 		<locale-config>
 			<default-locale>en</default-locale>
 			<supported-locale>en</supported-locale>
@@ -20,6 +18,6 @@
 		<exception-handler-factory>ch.helvetia.jax2011.error.TodoExceptionHandlerFactory</exception-handler-factory>
 	</factory>
 	<lifecycle>
-		<phase-listener>ch.helvetia.jax2011.web.SecurityPhaseListener</phase-listener>
+		<!-- <phase-listener>ch.helvetia.jax2011.web.SecurityPhaseListener</phase-listener> -->
 	</lifecycle>
 </faces-config>

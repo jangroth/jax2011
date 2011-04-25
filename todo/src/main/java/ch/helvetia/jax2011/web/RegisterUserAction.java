@@ -7,10 +7,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.jboss.seam.security.Credentials;
+import org.jboss.seam.security.Identity;
+import org.picketlink.idm.impl.api.PasswordCredential;
+
 import ch.helvetia.jax2011.boundary.RegisterUserTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.User;
-import ch.helvetia.jax2011.security.Identity;
 import ch.helvetia.jax2011.util.MessageHelper;
 
 /**
@@ -23,6 +26,9 @@ public class RegisterUserAction implements Serializable {
 	private Conversation conversation;
 
 	@Inject
+	private Credentials credentials;
+
+	@Inject
 	private Identity identity;
 
 	@Inject
@@ -32,8 +38,7 @@ public class RegisterUserAction implements Serializable {
 
 	// TODO: introduce seam3 view-action
 	public void init() {
-		if (!FacesContext.getCurrentInstance().isPostback()
-				&& conversation.isTransient()) {
+		if (conversation.isTransient()) {
 			task.createUser();
 		}
 	}
@@ -46,7 +51,9 @@ public class RegisterUserAction implements Serializable {
 					FacesMessage.SEVERITY_WARN, "passwordsDontMatch"));
 		} else {
 			task.saveUser();
-			identity.silentLogin(task.getUser());
+			credentials.setUsername(task.getUser().getName());
+			credentials.setCredential(new PasswordCredential(task.getUser().getPassword()));
+			identity.quietLogin();
 			facesContext.addMessage(null, MessageHelper.createMessageFromKey(
 					FacesMessage.SEVERITY_INFO, "loginWelcome", task.getUser()
 							.getName()));

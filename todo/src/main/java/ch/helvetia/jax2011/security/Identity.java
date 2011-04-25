@@ -14,6 +14,7 @@ import ch.helvetia.jax2011.error.TodoSecurityException;
 
 /**
  * Bean for authentication and authorization
+ * REPLACED with org.jboss.seam.security.Identity
  */
 @SessionScoped
 @Named("jaxIdentity")
