@@ -2,21 +2,14 @@ package ch.helvetia.jax2011.boundary;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -32,7 +25,6 @@ import ch.helvetia.jax2011.entity.Todo;
 import ch.helvetia.jax2011.error.RestAnnotationException;
 import ch.helvetia.jax2011.error.RestCatchException;
 import ch.helvetia.jax2011.error.RestXmlException;
-import ch.helvetia.jax2011.error.ValidationException;
 
 /**
  * REST service to work with todos
