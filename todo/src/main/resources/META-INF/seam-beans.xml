@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd"
 	xmlns:s="urn:java:ee" xmlns:p="urn:java:javax.persistence"
 	xmlns:rest="urn:java:org.jboss.seam.rest:org.jboss.seam.rest.exceptions"
-	xmlns:todo="urn:java:ch.helvetia.jax2011.db">
+	xmlns:util="urn:java:ch.helvetia.jax2011.util">
 
 	<rest:SeamRestConfiguration>
 		<rest:mappings>
@@ -15,6 +15,16 @@
 			</s:value>
 		</rest:mappings>
 	</rest:SeamRestConfiguration>
-
+	
+	<util:JaxLocaleConfiguration>
+		<s:modifies />
+		<util:defaultLocaleKey>
+			<s:value>de_CH</s:value>
+		</util:defaultLocaleKey>
+		<util:supportedLocaleKeys>
+			<s:value>en_US</s:value>
+			<s:value>de_CH</s:value>
+		</util:supportedLocaleKeys>
+	</util:JaxLocaleConfiguration>
 
 </beans>
