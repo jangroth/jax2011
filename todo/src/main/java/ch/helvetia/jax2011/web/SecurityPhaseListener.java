@@ -11,9 +11,9 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
 import org.jboss.logging.Logger;
+import org.jboss.seam.solder.beanManager.BeanManagerLocator;
 
 import ch.helvetia.jax2011.security.Identity;
-import ch.helvetia.jax2011.util.BeanManagerUtil;
 
 /**
  * Restrict view access
@@ -58,7 +58,7 @@ public class SecurityPhaseListener implements PhaseListener {
 	}
 
 	private Identity getIdentity() {
-		BeanManager manager = BeanManagerUtil.getBeanManager();
+		BeanManager manager = new BeanManagerLocator().getBeanManager();
 		Set<Bean<?>> beans = manager.getBeans(Identity.class);
 		if (beans.size() != 1) {
 			if (beans.size() == 0) {
