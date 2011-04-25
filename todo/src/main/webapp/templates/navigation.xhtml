@@ -22,10 +22,10 @@
 					immediate="true" rendered="#{jaxIdentity.loggedIn}" />
 			</p:toolbarGroup>
 			<p:toolbarGroup align="right">
-				<h:selectOneMenu value="#{localeSelector.language}"
-					valueChangeListener="#{localeSelector.processValueChanged}"
+				<h:selectOneMenu value="#{localeHelper.language}"
+					valueChangeListener="#{localeHelper.processValueChanged}"
 					onchange="submit()">
-					<f:selectItems value="#{localeSelector.allLocales}" var="loc" 
+					<f:selectItems value="#{localeHelper.availabeLocales}" var="loc" 
 					itemLabel="#{loc.displayName}" itemValue="#{loc}"/>
 				</h:selectOneMenu>
 			</p:toolbarGroup>
