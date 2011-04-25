@@ -39,11 +39,6 @@ public class Identity implements Serializable {
 		}
 	}
 
-	public void silentLogin(User newUser) {
-		user = newUser;
-		activeRoles.add("admin");
-	}
-
 	public void logout() {
 		user = null;
 		activeRoles.clear();
