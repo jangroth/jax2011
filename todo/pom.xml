@@ -88,6 +88,11 @@
 			<version>1.1.1.Final</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.16</version>
+		</dependency>
 		<!-- db dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -154,24 +159,23 @@
 			<groupId>org.jboss.seam.security</groupId>
 			<artifactId>seam-security</artifactId>
 			<version>3.0.0.Final</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.seam.servlet</groupId>
 			<artifactId>seam-servlet</artifactId>
 			<version>3.0.0.Final</version>
 		</dependency>
-
 		<!-- logging dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
+			<version>1.5.10</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
+			<version>1.5.10</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -196,6 +200,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.6.0.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se-core</artifactId>
+			<version>1.1.1.Final</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

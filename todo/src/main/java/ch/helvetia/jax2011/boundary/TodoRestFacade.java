@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.jboss.seam.conversation.spi.SeamConversationContext;
+import org.jboss.seam.rest.templating.ResponseTemplate;
 import org.jboss.seam.rest.validation.ValidateRequest;
 
 import ch.helvetia.jax2011.control.TodoService;
@@ -32,9 +33,10 @@ import ch.helvetia.jax2011.error.RestXmlException;
  * Because the conversation context is not active during REST calls, it's not
  * possible to use the TodoService here TODO use the Seam 3 Conversation module
  * to manage a temporary conversation context
+ * 
+ * Content-Type=application/xml
  */
 @Path("/rest")
-@Produces("application/xml")
 @Stateless
 public class TodoRestFacade {
 
@@ -67,6 +69,7 @@ public class TodoRestFacade {
 
 	@GET
 	@Path("listTodos")
+	@Produces("application/xml")
 	public ListResponse listTodos() {
 		// EntityManager em = emf.createEntityManager();
 		// TypedQuery<Todo> query = em.createNamedQuery("findTodosByDate",
@@ -87,6 +90,7 @@ public class TodoRestFacade {
 
 	@POST
 	@Path("newTodo")
+	@Produces("application/xml")
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@ValidateRequest
 	public void newTodo(Todo todo) {
@@ -109,20 +113,40 @@ public class TodoRestFacade {
 
 	@GET
 	@Path("testCatchException")
+	@Produces("application/xml")
 	public String testCatchException() {
 		throw new RestCatchException();
 	}
 
 	@GET
 	@Path("testAnnotationException")
+	@Produces("application/xml")
 	public String testAnnotationException() {
 		throw new RestAnnotationException();
 	}
 
 	@GET
 	@Path("testXmlException")
+	@Produces("application/xml")
 	public String testXmlException() {
 		throw new RestXmlException();
+	}
+
+	@GET
+	@Path("listTodoNames")
+	@Produces({ "application/todos+xml" })
+	@ResponseTemplate.List({
+			@ResponseTemplate(value = "/freemarker/todos.ftl", produces = "application/todos+xml")
+	})
+	// Doesn't work!
+	public List<Todo> listTodoNames() {
+		conversationContext.associate(request).activate(null);
+
+		List<Todo> todos = todoService.findTodos(new Date(), null);
+
+		conversationContext.invalidate().deactivate().dissociate(request);
+
+		return todos;
 	}
 
 }

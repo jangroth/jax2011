@@ -5,13 +5,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Stereotype;
 
 /**
  * Task Stereotype
  */
-@RequestScoped
+@ApplicationScoped
 @Stereotype
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
