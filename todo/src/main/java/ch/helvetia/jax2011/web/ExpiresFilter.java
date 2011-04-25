@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * This filter controls the setting of the Expires HTTP header and the max-age directive of the Cache-Control HTTP
  * header in server responses.
- * TODO Use Seam Servlet
+ * REPLACED with ch.helvetia.jax2011.web.ExpiresHandler
  */
 public class ExpiresFilter implements Filter {
 

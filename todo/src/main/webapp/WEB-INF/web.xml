@@ -22,19 +22,19 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	<filter>
-		<filter-name>Expires Filter</filter-name>
-		<filter-class>ch.helvetia.jax2011.web.ExpiresFilter</filter-class>
-		<init-param>
-			<description>604800000 ms = 7 day</description>
-			<param-name>expires</param-name>
-			<param-value>604800000</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>Expires Filter</filter-name>
-		<url-pattern>/javax.faces.resource/*</url-pattern>
-	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 		<filter-name>Expires Filter</filter-name> -->
+<!-- 		<filter-class>ch.helvetia.jax2011.web.ExpiresFilter</filter-class> -->
+<!-- 		<init-param> -->
+<!-- 			<description>604800000 ms = 7 day</description> -->
+<!-- 			<param-name>expires</param-name> -->
+<!-- 			<param-value>604800000</param-value> -->
+<!-- 		</init-param> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>Expires Filter</filter-name> -->
+<!-- 		<url-pattern>/javax.faces.resource/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
