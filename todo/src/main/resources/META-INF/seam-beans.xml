@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd"
 	xmlns:s="urn:java:ee" xmlns:p="urn:java:javax.persistence"
 	xmlns:rest="urn:java:org.jboss.seam.rest:org.jboss.seam.rest.exceptions"
-	xmlns:util="urn:java:ch.helvetia.jax2011.util">
+	xmlns:util="urn:java:ch.helvetia.jax2011.util" xmlns:todo="urn:java:ch.helvetia.jax2011.db:ch.helvetia.jax2011.web">
 
 	<rest:SeamRestConfiguration>
 		<rest:mappings>
@@ -15,7 +15,7 @@
 			</s:value>
 		</rest:mappings>
 	</rest:SeamRestConfiguration>
-	
+
 	<util:JaxLocaleConfiguration>
 		<s:modifies />
 		<util:defaultLocaleKey>
@@ -26,5 +26,20 @@
 			<s:value>de_CH</s:value>
 		</util:supportedLocaleKeys>
 	</util:JaxLocaleConfiguration>
+
+	<!-- <p:EntityManagerFactory> -->
+	<!-- <s:Produces /> -->
+	<!-- <p:PersistenceUnit unitName="todoApp" /> -->
+	<!-- <todo:TodoDb /> -->
+	<!-- <s:ConversationScoped /> -->
+	<!-- <s:ExtensionManaged /> -->
+	<!-- </p:EntityManagerFactory> -->
+
+	<!-- 86400000 ms = 1 day -->
+	<todo:ExpiresHandler>
+		<s:modifies />
+		<todo:expires>86400000</todo:expires>
+		<todo:path>/javax.faces.resource</todo:path>
+	</todo:ExpiresHandler>
 
 </beans>
