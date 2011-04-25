@@ -26,7 +26,7 @@ import org.jboss.weld.context.http.HttpConversationContext;
 
 /**
  * JSF ExceptionHandler for the Todo App
- * TODO Use Seam Catch
+ * REPLACED with ch.helvetia.jax2011.error.JsfExceptionHandler
  */
 public class TodoExceptionHandler extends ExceptionHandlerWrapper {
 

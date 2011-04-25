@@ -17,7 +17,7 @@
 		</locale-config>
 	</application>
 	<factory>
-		<exception-handler-factory>ch.helvetia.jax2011.error.TodoExceptionHandlerFactory</exception-handler-factory>
+		<!-- <exception-handler-factory>ch.helvetia.jax2011.error.TodoExceptionHandlerFactory</exception-handler-factory> -->
 	</factory>
 	<lifecycle>
 		<phase-listener>ch.helvetia.jax2011.web.SecurityPhaseListener</phase-listener>

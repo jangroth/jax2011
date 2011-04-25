@@ -9,6 +9,7 @@ import ch.helvetia.jax2011.util.BeanManagerUtil;
 
 /**
  * Factory for the TodoExceptionHandler
+ * REPLACED with ch.helvetia.jax2011.error.JsfExceptionHandler
  */
 public class TodoExceptionHandlerFactory extends ExceptionHandlerFactory {
 
