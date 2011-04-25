@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import ch.helvetia.jax2011.boundary.RegisterUserTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.User;
+import ch.helvetia.jax2011.security.Credentials;
 import ch.helvetia.jax2011.security.Identity;
 import ch.helvetia.jax2011.util.MessageHelper;
 
@@ -24,6 +25,9 @@ public class RegisterUserAction implements Serializable {
 
 	@Inject
 	private Identity identity;
+	
+	@Inject
+	private Credentials credentials;
 
 	@Inject
 	private RegisterUserTask task;
@@ -46,7 +50,9 @@ public class RegisterUserAction implements Serializable {
 					FacesMessage.SEVERITY_WARN, "passwordsDontMatch"));
 		} else {
 			task.saveUser();
-			identity.silentLogin(task.getUser());
+			credentials.setUsername(task.getUser().getName());
+			credentials.setPassword(task.getUser().getPassword());
+			identity.login();
 			facesContext.addMessage(null, MessageHelper.createMessageFromKey(
 					FacesMessage.SEVERITY_INFO, "loginWelcome", task.getUser()
 							.getName()));
