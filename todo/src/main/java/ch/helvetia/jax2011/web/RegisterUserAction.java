@@ -32,8 +32,7 @@ public class RegisterUserAction implements Serializable {
 
 	// TODO: introduce seam3 view-action
 	public void init() {
-		if (!FacesContext.getCurrentInstance().isPostback()
-				&& conversation.isTransient()) {
+		if (conversation.isTransient()) {
 			task.createUser();
 		}
 	}
