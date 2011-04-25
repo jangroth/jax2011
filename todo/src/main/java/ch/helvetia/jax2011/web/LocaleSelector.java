@@ -3,6 +3,7 @@ package ch.helvetia.jax2011.web;
 import java.io.Serializable;
 import java.util.Locale;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -17,34 +18,44 @@ public class LocaleSelector implements Serializable {
 
 	private Locale locale;
 
-	public Locale getLocale() {
-		if (locale == null) {
-			locale = Locale.ENGLISH;
-		}
-		return locale;
+	private Locale[] allLocales;
+
+	@PostConstruct
+	public void init() {
+		allLocales = new Locale[] { new Locale("en", "US"),
+				new Locale("de", "CH") };
+		locale = allLocales[0];
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 	}
 
 	public void processValueChanged(ValueChangeEvent e) {
 		setLanguage((String) e.getNewValue());
 	}
 
+	private Locale getLocaleFromIsoCode(String isoCode) {
+		String language = isoCode.substring(0, 2);
+		String country = isoCode.substring(3, 5);
+		return new Locale(language, country);
+	}
+
 	//
 	// getter & setter
 	//
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public Locale[] getAllLocales() {
+		return allLocales;
 	}
 
 	public String getLanguage() {
-		return getLocale().toString();
+		return locale.toString();
 	}
 
 	public void setLanguage(String isoCode) {
-		String language = isoCode.substring(0, 2);
-		String country = isoCode.substring(3, 5);
-		setLocale(new Locale(language, country));
+		locale = getLocaleFromIsoCode(isoCode);
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 	}
-
 }
