@@ -1,15 +1,19 @@
 package ch.helvetia.jax2011.util;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.event.Event;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.jboss.seam.international.Alter;
+import org.jboss.seam.solder.core.Client;
 
 /**
  * Bean to support locales and language switch.
@@ -18,20 +22,24 @@ import javax.inject.Named;
 @Named
 public class LocaleHelper implements Serializable {
 
-	private final static String[] supportedLocaleKeys = new String[] { "en_US",
-			"de_CH" };
 	private final static String defaultLocaleKey = "en_US";
+
+	@Inject
+	private List<java.util.Locale> availableLocales;
+
+	@Inject
+	private Locale defaultLocale;
+
+	@Inject
+	@Alter
+	@Client
+	private Event<java.util.Locale> localeEvent;
 
 	private Locale currentLocale;
 
-	private List<Locale> availableLocales = new ArrayList<Locale>();
-
 	@PostConstruct
 	public void init() {
-		for (String localeKey : supportedLocaleKeys) {
-			availableLocales.add(getLocaleFromLocaleKey(localeKey));
-		}
-		currentLocale = getLocaleFromLocaleKey(defaultLocaleKey);
+		currentLocale = defaultLocale;
 		FacesContext.getCurrentInstance().getViewRoot()
 				.setLocale(currentLocale);
 	}
@@ -64,6 +72,7 @@ public class LocaleHelper implements Serializable {
 
 	public void setLanguage(String isoCode) {
 		currentLocale = getLocaleFromLocaleKey(isoCode);
+		localeEvent.fire(currentLocale);
 		FacesContext.getCurrentInstance().getViewRoot()
 				.setLocale(currentLocale);
 	}
