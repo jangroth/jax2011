@@ -11,7 +11,6 @@ Die Teilnehmern können dieses am eigenen Rechner nachvollziehen - dafür ist es
 haben und in der Basisvariante starten zu können.
 
 Wir empfehlen(*) dazu die folgende Konstellation:
-
 - JBoss AS 6.0 
 - h2db
 - Eclipse IDE (Plugins: Jboss Tools, m2eclipse Core+Extras(**), egit(***))
