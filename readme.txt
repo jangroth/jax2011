@@ -47,7 +47,6 @@ Zur Einrichtung:
 - Optional: Installation egit Plugin (http://download.eclipse.org/egit/updates)
 
 (4) Installation git
-
 [Git steht für alle populären Betriebssyteme zur Verfügung, Download zb hier http://git-scm.com/download]
 
 (5) Auschecken des Projekts (Branch Master)
