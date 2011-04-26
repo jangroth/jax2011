@@ -1,4 +1,5 @@
 Installationsanleitung
+======================
 
 Im vorliegenden Projekt befindet sich die Applikation "TodoApp", welche die Basis fuer den praktischen Teil des Workshops "Extending JEE 6 with Seam 3" auf der Jax 2011 bildet. "TodoApp" ist eine relativ kleine Applikation, in welcher diverse zentrale Anforderungen einer Enterprise-Applikation umgesetzt sind bzw. umgesetzt werden sollen.  In der Basisvariante ist "TodoApp" dafuer zunaechst rein mit JEE 6 entwickelt, um dann im Laufe des Workshops mit immer mehr Seam 3 Komponenten versehen zu werden. 
 
