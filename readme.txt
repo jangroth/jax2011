@@ -7,8 +7,8 @@ diverse zentrale Anforderungen einer Enterprise-Applikation umgesetzt sind bzw. 
 Basisvariante ist "TodoApp" dafuer zunaechst rein mit JEE 6 entwickelt, und wird dann im Laufe des Workshops mit immer 
 mehr Seam 3 Komponenten versehen.
 
-Die Teilnehmern können dieses am eigenen Rechner nachvollziehen - dafür ist es sinnvoll, "TodoApp" bereits auf dem eigenen 
-Rechner eingerichtet zu haben und in der Basisvariante starten zu können.
+Die Teilnehmern können dieses am eigenen Rechner nachvollziehen - dafür ist es sinnvoll, "TodoApp" bereits eingerichtet zu
+haben und in der Basisvariante starten zu können.
 
 Wir empfehlen(*) dazu die folgende Konstellation:
 
