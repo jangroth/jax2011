@@ -43,8 +43,8 @@ Zur Einrichtung:
 - Entpacken
 - Installation JBoss Tools Plugin (Update Site: http://download.jboss.org/jbosstools/updates/stable/helios/)
 - Installation m2eclipse Core Plugin (Update Site: http://m2eclipse.sonatype.org/sites/m2e)
-- Installation m2eclipse Extras Plugin (http://m2eclipse.sonatype.org/sites/m2e-extras)
-- Optional: Installation egit Plugin (http://download.eclipse.org/egit/updates)
+- Installation m2eclipse Extras Plugin (Update Site: http://m2eclipse.sonatype.org/sites/m2e-extras)
+- Optional: Installation egit Plugin (Update Site: http://download.eclipse.org/egit/updates)
 
 (4) Installation git
 [Git steht für alle populären Betriebssyteme zur Verfügung, Download zb hier http://git-scm.com/download]
