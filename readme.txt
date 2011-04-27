@@ -1,14 +1,14 @@
 Installationsanleitung
 ======================
 
-Im vorliegenden Projekt befindet sich die Applikation "TodoApp", welche die Basis fuer den praktischen Teil des Workshops
- "Extending JEE 6 with Seam 3" auf der Jax 2011 bildet. "TodoApp" ist eine relativ kleine Applikation, in welcher aber 
-diverse zentrale Anforderungen einer Enterprise-Applikation umgesetzt sind bzw. umgesetzt werden sollen. In der 
-Basisvariante ist "TodoApp" dafuer zunaechst rein mit JEE 6 entwickelt, und wird dann im Laufe des Workshops mit immer 
-mehr Seam 3 Komponenten versehen.
+Im vorliegenden Projekt befindet sich die Applikation "TodoApp", welche die Basis fuer den praktischen Teil des 
+Workshops "Extending JEE 6 with Seam 3" auf der Jax 2011 bildet. "TodoApp" ist eine relativ kleine Applikation, 
+in welcher aber diverse zentrale Anforderungen einer Enterprise-Applikation umgesetzt sind bzw. umgesetzt werden 
+sollen. In der Basisvariante ist "TodoApp" dafuer zunaechst rein mit JEE 6 entwickelt, und wird dann im Laufe 
+des Workshops mit immer mehr Seam 3 Komponenten versehen.
 
-Die Teilnehmern können dieses am eigenen Rechner nachvollziehen - dafür ist es sinnvoll, "TodoApp" bereits eingerichtet zu
-haben und in der Basisvariante starten zu können.
+Die Teilnehmern können dieses am eigenen Rechner nachvollziehen - dafür ist es sinnvoll, "TodoApp" bereits 
+eingerichtet zu haben und in der Basisvariante starten zu können.
 
 Wir empfehlen(*) dazu die folgende Konstellation:
 - JBoss AS 6.0 
@@ -20,7 +20,7 @@ Wir empfehlen(*) dazu die folgende Konstellation:
 (**) Maven-Grundkenntnisse sind vorteilhaft
 (***) git Kenntnisse sind nicht notwendig, lediglich zum Auschecken des Projekts wird einmalig git verwendet.
 
-=========================================================================================================================
+=======================================================================================================================
 
 Zur Einrichtung:
 
@@ -67,6 +67,6 @@ Zur Einrichtung:
 (7) egit im Eclipse einrichten (optional)
 - Kontextmenu auf Projekt: "Team/Share Project/Git/", Projekt auswählen, "finish"
 
-=========================================================================================================================
+=======================================================================================================================
 
 Fragen, Probleme, Fehler gefunden? Bitte kurze Mail an j(a)ngroth.de
