@@ -19,7 +19,7 @@
 				<h:panelGroup styleClass="ui-messages-error-icon" />
 				<h:panelGroup styleClass="ui-messages-error-summary">
 					<h:outputText
-						value="#{flash['handledException'].localizedMessage}" />
+						value="#{errorInfo.handledException.localizedMessage}" />
 				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
@@ -27,24 +27,22 @@
 		<p:panel header="Error Details" toggleable="false">
 			<h:panelGrid columns="2">
 				<h:outputText value="User:" />
-				<h:outputText value="#{flash['user']}" />
+				<h:outputText value="#{errorInfo.user}" />
 				<h:outputText value="Date:" />
-				<h:outputText value="#{flash['date']}">
+				<h:outputText value="#{errorInfo.date}">
 					<f:convertDateTime locale="de_CH" dateStyle="medium"
 						timeStyle="medium" type="both" />
 				</h:outputText>
 				<h:outputText value="Type:" />
-				<h:outputText
-					value="#{flash['handledException'].cause.class.name}" />
+				<h:outputText value="#{errorInfo.handledException.cause.class.name}" />
 				<h:outputText value="Message:" />
 				<h:outputText
-					value="#{flash['handledException'].cause.localizedMessage}" />
+					value="#{errorInfo.handledException.cause.localizedMessage}" />
 			</h:panelGrid>
 		</p:panel>
 
 		<p:panel header="Stack Trace" toggleable="true" collapsed="true">
-			<h:outputText value="#{flash['stackTrace']}"
-				escape="false" />
+			<h:outputText value="#{errorInfo.stacktrace}" escape="false" />
 		</p:panel>
 
 	</ui:define>

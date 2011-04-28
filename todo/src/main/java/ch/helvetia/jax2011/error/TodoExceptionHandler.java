@@ -16,13 +16,16 @@ import javax.faces.application.ViewExpiredException;
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerWrapper;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.persistence.OptimisticLockException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
 import org.jboss.weld.Container;
 import org.jboss.weld.context.http.HttpConversationContext;
+
+import ch.helvetia.jax2011.security.Identity;
+import ch.helvetia.jax2011.util.BeanManagerUtil;
 
 /**
  * JSF ExceptionHandler for the Todo App
@@ -32,126 +35,134 @@ public class TodoExceptionHandler extends ExceptionHandlerWrapper {
 
 	private transient final Logger log = Logger.getLogger(TodoExceptionHandler.class);
 
-    private static final String ERROR_PAGE = "/error.xhtml";
+	private static final String ERROR_PAGE = "/error.xhtml";
 
-    private final ExceptionHandler wrappedExceptionHandler;
+	private final ExceptionHandler wrappedExceptionHandler;
 
-    public TodoExceptionHandler(ExceptionHandler wrapped) {
-            this.wrappedExceptionHandler = wrapped;
-    }
+	public TodoExceptionHandler(ExceptionHandler wrapped) {
+		this.wrappedExceptionHandler = wrapped;
+	}
 
-    @Override
-    public ExceptionHandler getWrapped() {
-            return this.wrappedExceptionHandler;
-    }
+	@Override
+	public ExceptionHandler getWrapped() {
+		return this.wrappedExceptionHandler;
+	}
 
-    @Override
-    public void handle() throws FacesException {
-            Iterator<ExceptionQueuedEvent> it = this.getUnhandledExceptionQueuedEvents().iterator();
-            if (it.hasNext()) {
-                    this.log.trace("Handling first exception");
-                    ExceptionQueuedEvent event = it.next();
-                    Throwable t = event.getContext().getException();
-                    
-                    // TODO Use Seam Faces
-                    FacesContext facesContext = event.getContext().getContext();
-                    NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
-                    Flash flash = facesContext.getExternalContext().getFlash();
+	@Override
+	public void handle() throws FacesException {
+		Iterator<ExceptionQueuedEvent> it = getUnhandledExceptionQueuedEvents().iterator();
+		if (it.hasNext()) {
+			log.trace("Handling first exception");
+			ExceptionQueuedEvent event = it.next();
+			Throwable t = event.getContext().getException();
 
-                    this.activateConversationContext();
-                    HandledException handledException = this.handleException(t, facesContext);
+			// TODO Use Seam Faces
+			FacesContext facesContext = event.getContext().getContext();
+			NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
 
-                    flash.put("exception", t);
-                    flash.put("handledException", handledException);
-                    flash.put("stackTrace", this.printHtmlStackTrace(t));
-                    flash.put("user", this.getUsername());
-                    flash.put("date", new Date());
-                    navigationHandler.handleNavigation(facesContext, null, ERROR_PAGE + "?" + "faces-redirect=true");
-                    facesContext.renderResponse();
-            }
-    }
+			activateConversationContext((HttpServletRequest) facesContext.getExternalContext().getRequest());
+			HandledException handledException = handleException(t, facesContext);
 
-    private HandledException handleException(Throwable t, FacesContext facesContext) {
-            ResourceBundle messages = this.getMessageBundle(facesContext);
-            List<Throwable> exceptionStack = this.createExceptionStack(t);
-            for (Throwable cause : exceptionStack) {
-                    if (cause instanceof NonexistentConversationException) {
-                            this.log.debugv(t, "Handling conversation timeout exception {0}", cause.getClass().getName());
-                            return new HandledException(messages.getString("error.sessionTimeout"), cause);
-                    } else if (cause instanceof ViewExpiredException) {
-                            this.log.debugv(t, "Handling session timeout exception {0}", cause.getClass().getName());
-                            return new HandledException(messages.getString("error.sessionTimeout"), cause);
-                    } else if (cause instanceof OptimisticLockException) {
-                            this.log.debugv(t, "Handling concurrency exception {0}", cause.getClass().getName());
-                            return new HandledException(messages.getString("error.concurrency"), cause);
-                    } else if (cause instanceof NoSuchEJBException) {
-                            this.log.debugv(t, "Handling concurrency exception {0}", cause.getClass().getName());
-                            return new HandledException(messages.getString("error.concurrency"), cause);
-                    }
-            }
-            this.log.errorv(t, "Handling exception {0}", t.getClass().getName());
-            return new HandledException(messages.getString("error.general"), t);
-    }
+			ErrorInfo errorInfo = getErrorInfo();
+			errorInfo.setHandledException(handledException);
+			errorInfo.setStacktrace(printHtmlStackTrace(handledException));
+			errorInfo.setUser(getUsername());
+			errorInfo.setDate(new Date());
 
-    // TODO Use Seam Solder
-    private ResourceBundle getMessageBundle(FacesContext facesContext) {
-            Locale locale;
-            if (facesContext.getViewRoot() != null) {
-                    locale = facesContext.getViewRoot().getLocale();
-            } else {
-                    locale = Locale.getDefault();
-            }
-            return ResourceBundle.getBundle("messages", locale, Thread.currentThread().getContextClassLoader());
-    }
+			navigationHandler.handleNavigation(facesContext, null, ERROR_PAGE + "?" + "faces-redirect=true");
+			facesContext.renderResponse();
+		}
+	}
 
-    private List<Throwable> createExceptionStack(Throwable t) {
-            List<Throwable> stack = new ArrayList<Throwable>();
-            for (Throwable cause = t; cause != null; cause = cause.getCause()) {
-                    stack.add(cause);
-            }
-            Collections.reverse(stack);
-            return stack;
-    }
+	private HandledException handleException(Throwable t, FacesContext facesContext) {
+		ResourceBundle messages = this.getMessageBundle(facesContext);
+		List<Throwable> exceptionStack = this.createExceptionStack(t);
+		for (Throwable cause : exceptionStack) {
+			if (cause instanceof NonexistentConversationException) {
+				this.log.debugv(t, "Handling conversation timeout exception {0}", cause.getClass().getName());
+				return new HandledException(messages.getString("error.sessionTimeout"), cause);
+			} else if (cause instanceof ViewExpiredException) {
+				this.log.debugv(t, "Handling session timeout exception {0}", cause.getClass().getName());
+				return new HandledException(messages.getString("error.sessionTimeout"), cause);
+			} else if (cause instanceof OptimisticLockException) {
+				this.log.debugv(t, "Handling concurrency exception {0}", cause.getClass().getName());
+				return new HandledException(messages.getString("error.concurrency"), cause);
+			} else if (cause instanceof NoSuchEJBException) {
+				this.log.debugv(t, "Handling concurrency exception {0}", cause.getClass().getName());
+				return new HandledException(messages.getString("error.concurrency"), cause);
+			}
+		}
+		this.log.errorv(t, "Handling exception {0}", t.getClass().getName());
+		return new HandledException(messages.getString("error.general"), t);
+	}
 
-    // TODO Use Seam Conversation
-    private void activateConversationContext() {
-            HttpConversationContext conversationContext = Container.instance().deploymentManager().instance()
-            .select(HttpConversationContext.class).get();
-            if (!conversationContext.isActive()) {
-                    conversationContext.activate();
-            }
-    }
+	private ErrorInfo getErrorInfo() {
+		return BeanManagerUtil.getInstance(ErrorInfo.class);
+	}
 
-    // TODO Get logged in user
-    private String getUsername() {
-            return "testuser";
-    }
+	// TODO Use Seam Solder
+	private ResourceBundle getMessageBundle(FacesContext facesContext) {
+		Locale locale;
+		if (facesContext.getViewRoot() != null) {
+			locale = facesContext.getViewRoot().getLocale();
+		} else {
+			locale = Locale.getDefault();
+		}
+		return ResourceBundle.getBundle("messages", locale, Thread.currentThread().getContextClassLoader());
+	}
 
-    private String printHtmlStackTrace(Throwable t) {
-            StringBuilder stackTrace = new StringBuilder();
-            stackTrace.append("<span>");
-            stackTrace.append(t);
-            stackTrace.append("</span>");
-            for (StackTraceElement element : t.getStackTrace()) {
-                    stackTrace.append("<br/>");
-                    stackTrace.append("<span style=\"padding-left: 20px;\">");
-                    stackTrace.append("at " + element);
-                    stackTrace.append("</span>");
-            }
-            for (Throwable cause = t.getCause(); cause != null; cause = cause.getCause()) {
-                    stackTrace.append("<br/>");
-                    stackTrace.append("<span>");
-                    stackTrace.append("Caused by: " + cause);
-                    stackTrace.append("</span>");
-                    for (StackTraceElement element : cause.getStackTrace()) {
-                            stackTrace.append("<br/>");
-                            stackTrace.append("<span style=\"padding-left: 20px;\">");
-                            stackTrace.append("at " + element);
-                            stackTrace.append("</span>");
-                    }
-            }
-            return stackTrace.toString();
-    }
+	private List<Throwable> createExceptionStack(Throwable t) {
+		List<Throwable> stack = new ArrayList<Throwable>();
+		for (Throwable cause = t; cause != null; cause = cause.getCause()) {
+			stack.add(cause);
+		}
+		Collections.reverse(stack);
+		return stack;
+	}
 
+	// TODO Use Seam Conversation
+	private void activateConversationContext(HttpServletRequest request) {
+		HttpConversationContext conversationContext = Container.instance().deploymentManager().instance()
+				.select(HttpConversationContext.class).get();
+		conversationContext.associate(request);
+		if (!conversationContext.isActive()) {
+			conversationContext.activate();
+		}
+	}
+
+	private String getUsername() {
+		try {
+			return BeanManagerUtil.getInstance(Identity.class).getUser().getName();
+		} catch (Exception ex) {
+			return "Unknown";
+		}
+	}
+
+	// TODO Security risk! Use HTML escaping.
+	private String printHtmlStackTrace(Throwable t) {
+		StringBuilder stackTrace = new StringBuilder();
+		stackTrace.append("<span>");
+		stackTrace.append(t);
+		stackTrace.append("</span>");
+		for (StackTraceElement element : t.getStackTrace()) {
+			stackTrace.append("<br/>");
+			stackTrace.append("<span style=\"padding-left: 20px;\">");
+			stackTrace.append("at " + element);
+			stackTrace.append("</span>");
+		}
+		for (Throwable cause = t.getCause(); cause != null; cause = cause.getCause()) {
+			stackTrace.append("<br/>");
+			stackTrace.append("<span>");
+			stackTrace.append("Caused by: " + cause);
+			stackTrace.append("</span>");
+			for (StackTraceElement element : cause.getStackTrace()) {
+				stackTrace.append("<br/>");
+				stackTrace.append("<span style=\"padding-left: 20px;\">");
+				stackTrace.append("at " + element);
+				stackTrace.append("</span>");
+			}
+		}
+		return stackTrace.toString();
+	}
 
 }
