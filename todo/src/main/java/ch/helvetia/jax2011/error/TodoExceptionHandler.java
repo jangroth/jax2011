@@ -18,6 +18,7 @@ import javax.faces.context.ExceptionHandlerWrapper;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.persistence.OptimisticLockException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
 import org.jboss.weld.Container;
@@ -28,7 +29,7 @@ import ch.helvetia.jax2011.util.BeanManagerUtil;
 
 /**
  * JSF ExceptionHandler for the Todo App
- * TODO Use Seam Catch
+ * REPLACED with ch.helvetia.jax2011.error.JsfExceptionHandler
  */
 public class TodoExceptionHandler extends ExceptionHandlerWrapper {
 
@@ -59,7 +60,7 @@ public class TodoExceptionHandler extends ExceptionHandlerWrapper {
 			FacesContext facesContext = event.getContext().getContext();
 			NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
 
-			activateConversationContext();
+			activateConversationContext((HttpServletRequest) facesContext.getExternalContext().getRequest());
 			HandledException handledException = handleException(t, facesContext);
 
 			ErrorInfo errorInfo = getErrorInfo();
@@ -67,6 +68,7 @@ public class TodoExceptionHandler extends ExceptionHandlerWrapper {
 			errorInfo.setStacktrace(printHtmlStackTrace(handledException));
 			errorInfo.setUser(getUsername());
 			errorInfo.setDate(new Date());
+
 			navigationHandler.handleNavigation(facesContext, null, ERROR_PAGE + "?" + "faces-redirect=true");
 			facesContext.renderResponse();
 		}
@@ -119,9 +121,10 @@ public class TodoExceptionHandler extends ExceptionHandlerWrapper {
 	}
 
 	// TODO Use Seam Conversation
-	private void activateConversationContext() {
+	private void activateConversationContext(HttpServletRequest request) {
 		HttpConversationContext conversationContext = Container.instance().deploymentManager().instance()
 				.select(HttpConversationContext.class).get();
+		conversationContext.associate(request);
 		if (!conversationContext.isActive()) {
 			conversationContext.activate();
 		}

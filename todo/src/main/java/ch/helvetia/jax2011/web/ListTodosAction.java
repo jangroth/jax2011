@@ -17,6 +17,7 @@ import ch.helvetia.jax2011.boundary.ListTodosTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.Tag;
 import ch.helvetia.jax2011.entity.Todo;
+import ch.helvetia.jax2011.error.TodoException;
 
 /**
  * Action to create a new todo-item.
@@ -42,6 +43,7 @@ public class ListTodosAction implements Serializable {
 				&& conversation.isTransient()) {
 			task.init();
 		}
+		throw new TodoException();
 	}
 
 	public void refresh() {
