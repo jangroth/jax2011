@@ -1,9 +1,5 @@
 package ch.helvetia.jax2011.web;
 
-import java.util.Set;
-
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.BeanManager;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -11,9 +7,9 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
 import org.jboss.logging.Logger;
-import org.jboss.seam.solder.beanManager.BeanManagerLocator;
 
 import ch.helvetia.jax2011.security.Identity;
+import ch.helvetia.jax2011.util.BeanManagerUtil;
 
 /**
  * Restrict view access
@@ -59,21 +55,7 @@ public class SecurityPhaseListener implements PhaseListener {
 	}
 
 	private Identity getIdentity() {
-		BeanManager manager = new BeanManagerLocator().getBeanManager();
-		Set<Bean<?>> beans = manager.getBeans(Identity.class);
-		if (beans.size() != 1) {
-			if (beans.size() == 0) {
-				throw new RuntimeException("No beans of class "
-						+ Identity.class + " found.");
-			} else {
-				throw new RuntimeException("Multiple beans of class "
-						+ Identity.class + " found: " + beans + ".");
-			}
-		}
-		@SuppressWarnings("unchecked")
-		Bean<Identity> myBean = (Bean<Identity>) beans.iterator().next();
-		return (Identity) manager.getReference(myBean, Identity.class,
-				manager.createCreationalContext(myBean));
+		return BeanManagerUtil.getInstance(Identity.class);
 	}
 
 	@Override
