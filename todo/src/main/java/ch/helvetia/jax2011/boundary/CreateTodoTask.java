@@ -10,6 +10,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
+import org.jboss.seam.faces.context.conversation.Begin;
+import org.jboss.seam.faces.context.conversation.End;
+
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
 import ch.helvetia.jax2011.control.TagService;
 import ch.helvetia.jax2011.control.TodoService;
@@ -26,8 +29,8 @@ import ch.helvetia.jax2011.security.Identity;
 @TransactionAttribute(TransactionAttributeType.NEVER)
 public class CreateTodoTask implements Serializable {
 
-	@Inject
-	private Conversation conversation;
+//	@Inject
+//	private Conversation conversation;
 
 	@Inject
 	private Identity identity;
@@ -46,9 +49,10 @@ public class CreateTodoTask implements Serializable {
 	 * initialize class-attribute with new todo from service
 	 */
 	@Admin
+	@Begin
 	public void createTodo() {
 		todo = todoService.createNewTodo();
-		conversation.begin();
+		//conversation.begin();
 	}
 
 	/**
@@ -73,8 +77,9 @@ public class CreateTodoTask implements Serializable {
 		todoService.saveTodo(todo);
 	}
 
+	@End
 	public void finish() {
-		conversation.end();
+		//conversation.end();
 	}
 
 	//
