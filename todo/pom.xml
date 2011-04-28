@@ -96,7 +96,72 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- seam 3 dependencies -->
-
+<!-- 
+		<dependency>
+			<groupId>org.jboss.seam.solder</groupId>
+			<artifactId>seam-solder</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.solder</groupId>
+			<artifactId>seam-solder-tooling</artifactId>
+			<version>3.0.0.Final</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.validation</groupId>
+			<artifactId>seam-validation</artifactId>
+			<version>3.0.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.config</groupId>
+			<artifactId>seam-config-xml</artifactId>
+			<version>3.0.0.Final</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.international</groupId>
+			<artifactId>seam-international</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.rest</groupId>
+			<artifactId>seam-rest</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.conversation</groupId>
+			<artifactId>seam-conversation-weld</artifactId>
+			<version>3.0.0.CR1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.catch</groupId>
+			<artifactId>seam-catch</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.faces</groupId>
+			<artifactId>seam-faces</artifactId>
+			<version>3.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.persistence</groupId>
+			<artifactId>seam-persistence</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.security</groupId>
+			<artifactId>seam-security</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.servlet</groupId>
+			<artifactId>seam-servlet</artifactId>
+			<version>3.0.0.Final</version>
+		</dependency>
+-->
 		<!-- logging dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
