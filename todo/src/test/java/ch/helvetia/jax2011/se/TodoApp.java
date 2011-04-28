@@ -45,6 +45,7 @@ public class TodoApp {
 		conversationContext.associate(boundRequest).activate(null);
 
 		List<Todo> todos = todoService.findTodos(new Date(), null);
+		System.out.println(todos);
 
 		conversationContext.invalidate().deactivate().dissociate(boundRequest);
 	}
