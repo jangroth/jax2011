@@ -3,7 +3,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd"
 	xmlns:s="urn:java:ee" xmlns:p="urn:java:javax.persistence"
 	xmlns:rest="urn:java:org.jboss.seam.rest:org.jboss.seam.rest.exceptions"
-	xmlns:util="urn:java:ch.helvetia.jax2011.util" xmlns:todo="urn:java:ch.helvetia.jax2011.db:ch.helvetia.jax2011.web"
+	xmlns:util="urn:java:ch.helvetia.jax2011.util"
+	xmlns:todo="urn:java:ch.helvetia.jax2011.db:ch.helvetia.jax2011.web:ch.helvetia.jax2011.control"
 	xmlns:security="urn:java:org.jboss.seam.security">
 
 	<rest:SeamRestConfiguration>
@@ -45,7 +46,13 @@
 
 	<security:IdentityImpl>
 		<s:modifies />
-		<security:authenticatorClass>ch.helvetia.jax2011.security.TodoAuthenticator</security:authenticatorClass>
+		<security:authenticatorClass>ch.helvetia.jax2011.security.TodoAuthenticator
+		</security:authenticatorClass>
 	</security:IdentityImpl>
+
+	<todo:AppVersion>
+		<s:modifies />
+		<todo:version>0.2 Seam 3</todo:version>
+	</todo:AppVersion>
 
 </beans>

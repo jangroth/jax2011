@@ -21,7 +21,7 @@ public class AppVersion {
 
 	@PostConstruct
 	public void init() {
-		version = properties.getProperty("version");
+		//version = properties.getProperty("version");
 	}
 
 	//
