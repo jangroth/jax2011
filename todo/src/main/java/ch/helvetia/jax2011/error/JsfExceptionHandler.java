@@ -8,10 +8,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.jboss.logging.Logger;
 import org.jboss.seam.conversation.spi.SeamConversationContext;
 import org.jboss.seam.exception.control.CaughtException;
 import org.jboss.seam.exception.control.Handles;
 import org.jboss.seam.exception.control.HandlesExceptions;
+import org.jboss.seam.exception.control.Precedence;
+import org.jboss.seam.exception.control.TraversalMode;
 import org.jboss.seam.faces.qualifier.Faces;
 import org.jboss.seam.security.Identity;
 
@@ -24,22 +27,30 @@ public class JsfExceptionHandler {
 	private NavigationHandler navigationHandler;
 
 	@Inject
-	FacesContext facesContext;
+	private FacesContext facesContext;
 
 	@Inject
-	ExternalContext externalContext;
+	private ExternalContext externalContext;
 
 	@Inject
-	HttpServletRequest request;
+	private HttpServletRequest request;
 
 	@Inject
-	SeamConversationContext<HttpServletRequest> conversationContext;
+	private SeamConversationContext<HttpServletRequest> conversationContext;
 
 	@Inject
-	ErrorInfo errorInfo;
+	private ErrorInfo errorInfo;
 
 	@Inject
 	private Identity identity;
+
+	@Inject
+	private Logger log;
+
+	public void logException(
+			@Handles(during = TraversalMode.BREADTH_FIRST, precedence = Precedence.HIGH) @Faces CaughtException<Throwable> event) {
+		log.info("Throwed exception", event.getException());
+	}
 
 	public void handleException(@Handles @Faces CaughtException<Throwable> event) {
 		try {
