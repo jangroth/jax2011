@@ -42,7 +42,11 @@ public class JsfExceptionHandler {
 	private Identity identity;
 
 	public void handleException(@Handles @Faces CaughtException<Throwable> event) {
-		conversationContext.associate(request).activate(null);
+		try {
+			conversationContext.associate(request).activate(null);
+		} catch (Exception e) {
+			// do nothing
+		}
 
 		errorInfo.setHandledException(new HandledException(event.getException()));
 		errorInfo.setStacktrace(printHtmlStackTrace(event.getException()));
