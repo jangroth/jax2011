@@ -8,5 +8,3 @@
 		<class>org.jboss.seam.faces.context.conversation.ConversationBoundaryInterceptor</class>
 	</interceptors>
 </beans>
-	
-	
