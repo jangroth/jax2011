@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import org.jboss.seam.faces.context.conversation.Begin;
 import org.jboss.seam.faces.context.conversation.End;
+import org.jboss.seam.transaction.Transactional;
 
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
 import ch.helvetia.jax2011.control.TagService;
@@ -25,12 +26,13 @@ import ch.helvetia.jax2011.security.Identity;
  * User-Task to create a new todo.
  */
 @UserTask
-@Stateful
+// @Stateful
 @TransactionAttribute(TransactionAttributeType.NEVER)
+// @Transactional
 public class CreateTodoTask implements Serializable {
 
-//	@Inject
-//	private Conversation conversation;
+	// @Inject
+	// private Conversation conversation;
 
 	@Inject
 	private Identity identity;
@@ -52,7 +54,7 @@ public class CreateTodoTask implements Serializable {
 	@Begin
 	public void createTodo() {
 		todo = todoService.createNewTodo();
-		//conversation.begin();
+		// conversation.begin();
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class CreateTodoTask implements Serializable {
 
 	@End
 	public void finish() {
-		//conversation.end();
+		// conversation.end();
 	}
 
 	//

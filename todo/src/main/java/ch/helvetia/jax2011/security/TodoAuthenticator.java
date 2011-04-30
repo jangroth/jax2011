@@ -34,7 +34,7 @@ public class TodoAuthenticator extends BaseAuthenticator implements Authenticato
 					password);
 			if (newUser != null) {
 				setUser(new UserImpl(newUser.getName()));
-				//identity.addRole("admin", "USERS", "GROUP");
+				identity.addRole("admin", "USERS", "GROUP");
 				setStatus(AuthenticationStatus.SUCCESS);
 				return;
 			}
