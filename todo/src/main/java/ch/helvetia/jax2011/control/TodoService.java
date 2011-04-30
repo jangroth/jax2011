@@ -12,7 +12,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.jboss.logging.Logger;
-import org.jboss.seam.solder.logging.Category;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
@@ -30,7 +29,6 @@ public class TodoService {
 	private EntityManager em;
 
 	@Inject
-	@Category("info")
 	private Logger logger;
 
 	@Inject
