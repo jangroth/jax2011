@@ -7,6 +7,11 @@
 	xmlns:todo="urn:java:ch.helvetia.jax2011.db:ch.helvetia.jax2011.web:ch.helvetia.jax2011.control"
 	xmlns:security="urn:java:org.jboss.seam.security">
 
+	<security:SecurityEventMessages>
+		<s:modifies />
+		<security:enabled>false</security:enabled>
+	</security:SecurityEventMessages>
+
 	<rest:SeamRestConfiguration>
 		<rest:mappings>
 			<s:value>
