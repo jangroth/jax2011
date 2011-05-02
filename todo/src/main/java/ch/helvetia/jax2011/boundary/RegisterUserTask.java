@@ -8,6 +8,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 
+import org.jboss.seam.faces.context.conversation.Begin;
+import org.jboss.seam.faces.context.conversation.End;
+
 import ch.helvetia.jax2011.common.stereotypes.UserTask;
 import ch.helvetia.jax2011.control.UserService;
 import ch.helvetia.jax2011.entity.User;
@@ -28,9 +31,10 @@ public class RegisterUserTask implements Serializable {
 
 	private User user;
 
+	@Begin
 	public void createUser() {
 		user = userService.createNewUser();
-		conversation.begin();
+		// conversation.begin();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -38,8 +42,9 @@ public class RegisterUserTask implements Serializable {
 		userService.saveUser(user);
 	}
 
+	@End
 	public void finish() {
-		conversation.end();
+		// conversation.end();
 	}
 
 	//
