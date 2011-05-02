@@ -15,19 +15,19 @@ public class PasswordValidator implements Validator {
 
 	@Inject
 	@InputField
-	String password;
+	private String password;
 
 	@Inject
 	@InputField
-	String passwordRepeat;
+	private String passwordRepeat;
 
 	@Override
 	public void validate(FacesContext arg0, UIComponent arg1, Object arg2)
 			throws ValidatorException {
 
 		if (!password.trim().equals(passwordRepeat.trim())) {
-			throw new ValidatorException(new FacesMessage(
-					"sorry, validation failed"));
+			throw new ValidatorException(new FacesMessage("Error",
+					"Passwords dont match"));
 		}
 	}
 
