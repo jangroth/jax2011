@@ -23,14 +23,14 @@
 		</rest:mappings>
 	</rest:SeamRestConfiguration>
 
-	<util:JaxLocaleConfiguration>
+ 	<util:JaxLocaleConfiguration>
 		<s:modifies />
 		<util:defaultLocaleKey>
 			<s:value>de_CH</s:value>
 		</util:defaultLocaleKey>
 		<util:supportedLocaleKeys>
-			<s:value>en_US</s:value>
 			<s:value>de_CH</s:value>
+			<s:value>en_US</s:value>
 		</util:supportedLocaleKeys>
 	</util:JaxLocaleConfiguration>
 

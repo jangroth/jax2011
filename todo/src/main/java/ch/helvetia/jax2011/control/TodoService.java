@@ -2,6 +2,7 @@ package ch.helvetia.jax2011.control;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.jboss.logging.Logger;
+import org.jboss.seam.solder.core.Client;
 
 import ch.helvetia.jax2011.common.stereotypes.Service;
 import ch.helvetia.jax2011.db.TodoDb;
@@ -34,6 +36,10 @@ public class TodoService {
 	@Inject
 	private Validator validator;
 
+	@Inject
+	@Client
+	private Locale defaultLocale;
+
 	public Todo createNewTodo() {
 		Todo result = new Todo();
 		// set dueDate to tomorrow...
@@ -51,6 +57,8 @@ public class TodoService {
 	}
 
 	public void saveTodo(Todo todo) {
+		// ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		// Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
 		if (violations.size() > 0) {
 			throw new ValidationException("Validation failed");
@@ -59,7 +67,8 @@ public class TodoService {
 	}
 
 	public void updateTodo(Todo todo) {
-		// TODO: Use Seam Validation for validation
+		// ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		// Validator validator = factory.getValidator();
 		Set<ConstraintViolation<Todo>> violations = validator.validate(todo);
 		if (violations.size() > 0) {
 			throw new ValidationException("Validation failed");

@@ -1,6 +1,5 @@
 package ch.helvetia.jax2011.util;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Produces;
 
 import org.jboss.seam.international.locale.DefaultLocale;
@@ -12,7 +11,7 @@ public class JaxLocaleConfiguration extends LocaleConfiguration {
 	@DefaultLocale
 	private String defaultLocaleKey = "en_US";
 
-	@PostConstruct
+	// @PostConstruct
 	public void setup() {
 		addSupportedLocaleKey("en_US");
 		addSupportedLocaleKey("de_CH");

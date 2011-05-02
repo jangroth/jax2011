@@ -22,24 +22,30 @@ import org.jboss.seam.solder.core.Client;
 @Named
 public class LocaleHelper implements Serializable {
 
-	private final static String defaultLocaleKey = "en_US";
+	// private final static String[] supportedLocaleKeys = new String[] {
+	// "en_US",
+	// "de_CH" };
 
-	@Inject
-	private List<java.util.Locale> availableLocales;
-
-	@Inject
-	private Locale defaultLocale;
+	// private final static String defaultLocaleKey = "en_US";
 
 	@Inject
 	@Alter
 	@Client
 	private Event<java.util.Locale> localeEvent;
 
+	@Inject
+	@Client
 	private Locale currentLocale;
+
+	@Inject
+	private List<Locale> availableLocales;
 
 	@PostConstruct
 	public void init() {
-		currentLocale = defaultLocale;
+		// for (String localeKey : supportedLocaleKeys) {
+		// availableLocales.add(getLocaleFromLocaleKey(localeKey));
+		// }
+		// currentLocale = getLocaleFromLocaleKey(defaultLocaleKey);
 		FacesContext.getCurrentInstance().getViewRoot()
 				.setLocale(currentLocale);
 	}
