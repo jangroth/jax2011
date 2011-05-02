@@ -14,6 +14,7 @@ import org.picketlink.idm.impl.api.PasswordCredential;
 import ch.helvetia.jax2011.boundary.RegisterUserTask;
 import ch.helvetia.jax2011.common.stereotypes.Action;
 import ch.helvetia.jax2011.entity.User;
+import ch.helvetia.jax2011.util.ConversationLogger;
 import ch.helvetia.jax2011.util.MessageHelper;
 
 /**
@@ -34,13 +35,15 @@ public class RegisterUserAction implements Serializable {
 	@Inject
 	private RegisterUserTask task;
 
+	@Inject
+	private ConversationLogger conLog;
+
 	private String passwordRepeat;
 
 	// TODO: introduce seam3 view-action
 	public void init() {
-		if (conversation.isTransient()) {
-			task.createUser();
-		}
+		task.createUser();
+		conLog.started("");
 	}
 
 	public String registerUser() {
@@ -52,7 +55,8 @@ public class RegisterUserAction implements Serializable {
 		} else {
 			task.saveUser();
 			credentials.setUsername(task.getUser().getName());
-			credentials.setCredential(new PasswordCredential(task.getUser().getPassword()));
+			credentials.setCredential(new PasswordCredential(task.getUser()
+					.getPassword()));
 			identity.quietLogin();
 			facesContext.addMessage(null, MessageHelper.createMessageFromKey(
 					FacesMessage.SEVERITY_INFO, "loginWelcome", task.getUser()

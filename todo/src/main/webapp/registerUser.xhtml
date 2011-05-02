@@ -11,7 +11,7 @@
 	xmlns:jax="http://java.sun.com/jsf/composite/jax"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 	<f:metadata>
-		<s:viewAction action="#{registerUserAction.init}" />
+		<s:viewAction action="#{registerUserAction.init}" if="#{conversation.transient}" />
 	</f:metadata>
 	<ui:param name="title" value="#{bundle.registerNewUser}" />
 	<ui:define name="content">
