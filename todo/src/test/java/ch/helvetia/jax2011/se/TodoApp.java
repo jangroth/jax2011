@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
@@ -21,7 +21,7 @@ import org.jboss.weld.environment.se.events.ContainerInitialized;
 import ch.helvetia.jax2011.control.TodoService;
 import ch.helvetia.jax2011.entity.Todo;
 
-@Singleton
+@ApplicationScoped
 public class TodoApp {
 
 	private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
