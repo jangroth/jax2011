@@ -70,12 +70,12 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.2.0.Beta2</version>
 			<scope>compile</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>validation-api</artifactId>
-					<groupId>javax.validation</groupId>
-				</exclusion>
-			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -88,6 +88,11 @@
 			<version>1.1.1.Final</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.16</version>
+		</dependency>
 		<!-- db dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -96,7 +101,6 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- seam 3 dependencies -->
-<!-- 
 		<dependency>
 			<groupId>org.jboss.seam.solder</groupId>
 			<artifactId>seam-solder</artifactId>
@@ -161,18 +165,17 @@
 			<artifactId>seam-servlet</artifactId>
 			<version>3.0.0.Final</version>
 		</dependency>
--->
 		<!-- logging dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
+			<version>1.5.10</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
+			<version>1.5.10</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -197,6 +200,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.6.0.Final</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se-core</artifactId>
+			<version>1.1.1.Final</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
