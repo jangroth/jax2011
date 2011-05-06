@@ -68,5 +68,7 @@ Zur Einrichtung:
 - Kontextmenu auf Projekt: "Team/Share Project/Git/", Projekt auswählen, "finish"
 
 =======================================================================================================================
+Link zur Präsentation: http://prezi.com/swm0oao33igj/extending-jee-6-with-seam-3/
+
 
 Fragen, Probleme, Fehler gefunden? Bitte kurze Mail an j(a)ngroth.de
