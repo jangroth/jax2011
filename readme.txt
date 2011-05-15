@@ -1,3 +1,9 @@
+UPDATE 15.5.
+- Anleitung aktualisiert zur Verwendung ohne git-Kommandos
+- Verlinkung auf Präsentation ( http://prezi.com/swm0oao33igj/extending-jee-6-with-seam-3/) hinzugefügt
+
+=======================================================================================================================
+
 Installationsanleitung
 ======================
 
@@ -46,11 +52,18 @@ Zur Einrichtung:
 - Installation m2eclipse Extras Plugin (Update Site: http://m2eclipse.sonatype.org/sites/m2e-extras)
 - Optional: Installation egit Plugin (Update Site: http://download.eclipse.org/egit/updates)
 
-(4) Installation git
+(4) Optional: Installation git
 [Git steht für alle populären Betriebssyteme zur Verfügung, Download zb hier http://git-scm.com/download]
 
-(5) Auschecken des Projekts (Branch Master)
-- git clone git@github.com:jangroth/jax2011.git
+(5.1) Verwenden der JEE6-Basis (kein Seam):
+- Herunterladen der Master-Branch von https://github.com/jangroth/jax2011/zipball/master
+
+ODER 
+
+(5.2) Verwenden der Seam3-Version:
+- Herunterladen der Seam3-Branch von https://github.com/jangroth/jax2011/zipball/seam3
+- Achtung: Wenn der Server das erste Mal gestartet wird, kommt es zu einer Fehlermeldung "org.jboss.seam.config.xml.util.XmlConfigurationException: Wrong root namespace for XML config file". Dann bitte https://github.com/jangroth/jax2011/blob/master/patches/seam-conversation-spi-3.0.0.CR1.jar herunterladen und im lokalem Maven Repository austauschen (Das Seam-Conversation-Modul kommt mit einer fehlerhaften beans.xml, die wir patchen mussten.)
+
 -> Der Verzeichnisname des Projekts wird im folgenden mit [projekt-dir] bezeichnet
 
 (6) Projekt in Eclipse einrichten
@@ -69,6 +82,5 @@ Zur Einrichtung:
 
 =======================================================================================================================
 Link zur Präsentation: http://prezi.com/swm0oao33igj/extending-jee-6-with-seam-3/
-
 
 Fragen, Probleme, Fehler gefunden? Bitte kurze Mail an j(a)ngroth.de
